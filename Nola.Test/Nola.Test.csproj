@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>036fae9b-961b-41ee-9391-a47dda7b3c27</ProjectGuid>
+    <ProjectGuid>{8EAD0F72-CAE9-4485-AD2C-A8263F8DD4D1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Nola.Test</RootNamespace>
