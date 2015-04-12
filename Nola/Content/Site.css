@@ -1,5 +1,4 @@
-﻿@import url("//fonts.googleapis.com/css?family=Lato:400,700,400italic");
-/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+﻿/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1073,7 +1072,7 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   line-height: 1.42857143;
   color: #2c3e50;
@@ -1175,7 +1174,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Oswald", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 400;
   line-height: 1.1;
   color: inherit;
@@ -5812,7 +5811,7 @@ button.close {
   position: absolute;
   z-index: 1070;
   display: block;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1.4;
@@ -5919,7 +5918,7 @@ button.close {
   display: none;
   max-width: 276px;
   padding: 1px;
-  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 15px;
   font-weight: normal;
   line-height: 1.42857143;
@@ -6797,5 +6796,32 @@ a.list-group-item-danger.active:focus {
 }
 .popover {
   color: #2c3e50;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('fonts/oswald-regular.eot');
+  src: url('fonts/oswald-regular.eot?#iefix') format('embedded-opentype'), url('fonts/oswald-regular.woff2') format('woff2'), url('fonts/oswald-regular.woff') format('woff'), url('fonts/oswald-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('fonts/oswald-bold.eot');
+  src: url('fonts/oswald-bold.eot?#iefix') format('embedded-opentype'), url('fonts/oswald-bold.woff2') format('woff2'), url('fonts/oswald-bold.woff') format('woff'), url('fonts/oswald-bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Oswald';
+  src: url('fonts/oswald-regularitalic.eot');
+  src: url('fonts/oswald-regularitalic.eot?#iefix') format('embedded-opentype'), url('fonts/oswald-regularitalic.woff2') format('woff2'), url('fonts/oswald-regularitalic.woff') format('woff'), url('fonts/oswald-regularitalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Yanone';
+  src: url('fonts/YanoneKaffeesatz-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
 }
 /*# sourceMappingURL=SIte.css.map */
