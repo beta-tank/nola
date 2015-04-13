@@ -5,13 +5,18 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
+using Nola.DAL;
 
 namespace Nola.Models
 {
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit http://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        public IUserInfo UserInfo { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public IImage AvatarImage { get; set; }
+        public bool IsBlocked { get; set; }
+        
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -22,22 +27,29 @@ namespace Nola.Models
         }
     }
 
+    public class StudentUser : ApplicationUser
+    {
+        public TeachingType TeachingType { get; set; }
+        public int Grade { get; set; }
+    }
+
+    public class TeacherUser : ApplicationUser
+    {
+        public bool IsConfirmed { get; set; }
+    }
+
+
+    public enum TeachingType
+    {
+        First = 1,
+        Second
+    }
+   
+
+    
     public class ApplicationRole : IdentityRole
     {
         public string DisplayName { get; set; }
-    }
-
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
-    {
-        public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
-        {
-        }
-
-        public static ApplicationDbContext Create()
-        {
-            return new ApplicationDbContext();
-        }
     }
 
     class ApplicationRoleManager : RoleManager<ApplicationRole>
