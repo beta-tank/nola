@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -36,12 +37,12 @@ namespace Nola.DAL
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
+            modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new ApplicationClaimConfiguration());
             modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
             modelBuilder.Configurations.Add(new BaseUserConfiguration());
             modelBuilder.Configurations.Add(new StudentUserConfiguration());
             modelBuilder.Configurations.Add(new TeacherUserConfiguration());
-
         }
     }
 
