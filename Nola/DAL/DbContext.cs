@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Nola.DAL.Configuration;
 using Nola.Models;
 
 namespace Nola.DAL
@@ -13,6 +15,7 @@ namespace Nola.DAL
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }
 
         public static ApplicationDbContext Create()
@@ -24,8 +27,22 @@ namespace Nola.DAL
         {
             base.SaveChanges();
         }
-     
-        public DbSet<School> Schools { get; set; }        
+        public DbSet<ApplicationClaim> Claims { get; set; }
+        public DbSet<BaseUser> BaseUsers { get; set; }
+        public DbSet<StudentUser> StudentUsers { get; set; }
+        public DbSet<TeacherUser> TeacherUsers { get; set; } 
+        public DbSet<School> Schools { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Configurations.Add(new ApplicationClaimConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
+            modelBuilder.Configurations.Add(new BaseUserConfiguration());
+            modelBuilder.Configurations.Add(new StudentUserConfiguration());
+            modelBuilder.Configurations.Add(new TeacherUserConfiguration());
+
+        }
     }
 
 }
