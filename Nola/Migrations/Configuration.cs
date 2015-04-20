@@ -1,7 +1,4 @@
-using System.Security.Claims;
-using Ninject.Infrastructure.Language;
 using Nola.Models;
-using ClaimTypes = Nola.Models.ClaimTypes;
 
 namespace Nola.Migrations
 {
@@ -31,8 +28,6 @@ namespace Nola.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            //if (System.Diagnostics.Debugger.IsAttached == false)
-            //    System.Diagnostics.Debugger.Launch();
             SeedClaims(context);
             SeedRoles(context);
             context.Commit();
@@ -41,18 +36,16 @@ namespace Nola.Migrations
 
         private static void SeedClaims(Nola.DAL.ApplicationDbContext context)
         {
-            context.Claims.AddOrUpdate(new ApplicationClaim(){Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.AddTest});
+            context.Claims.AddOrUpdate(new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.AddTest });
         }
 
         private static void SeedRoles(Nola.DAL.ApplicationDbContext context)
         {
             var claims = context.Claims.ToList();
-            var role = new ApplicationRole() {Name = "admin", DisplayName = "Администратор", Claims = claims};
+            var role = new ApplicationRole() { Name = "admin", DisplayName = "?????????????", Claims = claims };
             context.Roles.AddOrUpdate(role);
-            context.Roles.AddOrUpdate(new ApplicationRole() { Name = "student", DisplayName = "Ученик" });
-            context.Roles.AddOrUpdate(new ApplicationRole() { Name = "teacher", DisplayName = "Преподаватель" });
+            context.Roles.AddOrUpdate(new ApplicationRole() { Name = "student", DisplayName = "??????" });
+            context.Roles.AddOrUpdate(new ApplicationRole() { Name = "teacher", DisplayName = "?????????????" });
         }
-
-        
     }
 }

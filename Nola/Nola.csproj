@@ -245,29 +245,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504201346442_users_1.cs" />
-    <Compile Include="Migrations\201504201346442_users_1.Designer.cs">
-      <DependentUpon>201504201346442_users_1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201528344_users_2.cs" />
-    <Compile Include="Migrations\201504201528344_users_2.Designer.cs">
-      <DependentUpon>201504201528344_users_2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201536156_users_3.cs" />
-    <Compile Include="Migrations\201504201536156_users_3.Designer.cs">
-      <DependentUpon>201504201536156_users_3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201544473_users_4.cs" />
-    <Compile Include="Migrations\201504201544473_users_4.Designer.cs">
-      <DependentUpon>201504201544473_users_4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201601304_users_41.cs" />
-    <Compile Include="Migrations\201504201601304_users_41.Designer.cs">
-      <DependentUpon>201504201601304_users_41.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201606056_users.cs" />
-    <Compile Include="Migrations\201504201606056_users.Designer.cs">
-      <DependentUpon>201504201606056_users.cs</DependentUpon>
+    <Compile Include="Migrations\201504201613386_users.cs" />
+    <Compile Include="Migrations\201504201613386_users.Designer.cs">
+      <DependentUpon>201504201613386_users.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education\EducationModels.cs" />
@@ -280,10 +260,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\NolaDB.mdf" />
-    <Content Include="App_Data\NolaDB_log.ldf">
-      <DependentUpon>NolaDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\SIte.min.css">
       <DependentUpon>Site.css</DependentUpon>
@@ -426,28 +402,16 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504201346442_users_1.resx">
-      <DependentUpon>201504201346442_users_1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201528344_users_2.resx">
-      <DependentUpon>201504201528344_users_2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201536156_users_3.resx">
-      <DependentUpon>201504201536156_users_3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201544473_users_4.resx">
-      <DependentUpon>201504201544473_users_4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201601304_users_41.resx">
-      <DependentUpon>201504201601304_users_41.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201606056_users.resx">
-      <DependentUpon>201504201606056_users.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201504201613386_users.resx">
+      <DependentUpon>201504201613386_users.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
