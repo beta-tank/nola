@@ -241,6 +241,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Education\EducationModels.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />
     <Compile Include="Models\Identity\IdentityModels.cs" />

@@ -24,9 +24,8 @@ namespace Nola.DAL
         {
             base.SaveChanges();
         }
-
-        public DbSet<TeacherUser> TeacherUsers { get; set; }
-        public DbSet<StudentUser> StudentUsers { get; set; }
+     
+        public DbSet<School> Schools { get; set; }        
     }
 
 }

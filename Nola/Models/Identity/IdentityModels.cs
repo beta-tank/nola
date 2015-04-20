@@ -16,7 +16,7 @@ namespace Nola.Models
         public string Surname { get; set; }
         public IImage AvatarImage { get; set; }
         public bool IsBlocked { get; set; }
-        
+        public School School { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -37,16 +37,7 @@ namespace Nola.Models
     {
         public bool IsConfirmed { get; set; }
     }
-
-
-    public enum TeachingType
-    {
-        First = 1,
-        Second
-    }
-   
-
-    
+  
     public class ApplicationRole : IdentityRole
     {
         public string DisplayName { get; set; }
