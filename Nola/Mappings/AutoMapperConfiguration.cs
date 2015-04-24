@@ -6,10 +6,7 @@ namespace Nola.Mappings
     {
         public static void Configure()
         {
-            Mapper.Initialize(m =>
-            {
-                m.AddProfile<DomainToModelsMappings>();
-            });
+            Mapper.Initialize(m => m.AddProfile<DomainToModelsMappings>());
         } 
     }
 }

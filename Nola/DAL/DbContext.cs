@@ -6,15 +6,16 @@ using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Nola.Common;
 using Nola.DAL.Configuration;
 using Nola.Models;
 
 namespace Nola.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("DefaultConnection")
         {
             Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }

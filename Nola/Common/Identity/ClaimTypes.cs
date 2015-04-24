@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Nola.Models
+namespace Nola.Common
 {
     public static class ClaimTypes
     {

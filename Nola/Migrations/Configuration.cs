@@ -1,3 +1,4 @@
+using Nola.Common;
 using Nola.Models;
 
 namespace Nola.Migrations

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Security.Claims;
 using AutoMapper;
+using Nola.Common;
 using Nola.Models;
 
 namespace Nola.Mappings
