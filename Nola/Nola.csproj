@@ -262,6 +262,14 @@
     <Compile Include="Migrations\201504241341323_users2.Designer.cs">
       <DependentUpon>201504241341323_users2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201504241359331_users3.cs" />
+    <Compile Include="Migrations\201504241359331_users3.Designer.cs">
+      <DependentUpon>201504241359331_users3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201504241402462_users4.cs" />
+    <Compile Include="Migrations\201504241402462_users4.Designer.cs">
+      <DependentUpon>201504241402462_users4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education\EducationModels.cs" />
     <Compile Include="Common\Identity\ClaimTypes.cs" />
@@ -430,6 +438,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201504241341323_users2.resx">
       <DependentUpon>201504241341323_users2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504241359331_users3.resx">
+      <DependentUpon>201504241359331_users3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201504241402462_users4.resx">
+      <DependentUpon>201504241402462_users4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
