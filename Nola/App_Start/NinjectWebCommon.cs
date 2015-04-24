@@ -1,3 +1,6 @@
+using AutoMapper;
+using Nola.Mappings;
+
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Nola.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Nola.App_Start.NinjectWebCommon), "Stop")]
 
@@ -20,6 +23,9 @@ namespace Nola.App_Start
         /// </summary>
         public static void Start() 
         {
+            // Init Automapper
+            AutoMapperConfiguration.Configure();
+            Mapper.AssertConfigurationIsValid();
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
