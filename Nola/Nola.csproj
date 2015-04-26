@@ -241,9 +241,9 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Common\Identity\ApplicationRoleManager.cs" />
-    <Compile Include="Common\Identity\ApplicationUser.cs" />
-    <Compile Include="Common\Identity\ApplicationUserStore.cs" />
+    <Compile Include="Core\Identity\ApplicationRoleManager.cs" />
+    <Compile Include="Core\Identity\ApplicationUser.cs" />
+    <Compile Include="Core\Identity\ApplicationUserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -255,6 +255,7 @@
     <Compile Include="DAL\DbContext.cs" />
     <Compile Include="DAL\Infrastructure\IRepository.cs" />
     <Compile Include="DAL\Infrastructure\Page.cs" />
+    <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -282,7 +283,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Education\EducationModels.cs" />
-    <Compile Include="Common\Identity\ClaimTypes.cs" />
+    <Compile Include="Core\Identity\ClaimTypes.cs" />
+    <Compile Include="Models\Common\PagedList.cs" />
     <Compile Include="Models\Users\UserModels.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
     <Compile Include="Models\ViewModels\AccountViewModels.cs" />

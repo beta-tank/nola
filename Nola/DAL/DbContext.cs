@@ -1,18 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Nola.Common;
+using Nola.Core;
 using Nola.DAL.Configuration;
 using Nola.Models;
 
 namespace Nola.DAL
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
+    public interface IApplicationDbContext
+    {
+
+        IDbSet<ApplicationUser> Users { get; set; }
+        IDbSet<ApplicationRole> Roles { get; set; }
+        DbSet<ApplicationClaim> Claims { get; set; }
+        DbSet<BaseUser> BaseUsers { get; set; }
+        DbSet<StudentUser> StudentUsers { get; set; }
+        DbSet<TeacherUser> TeacherUsers { get; set; }
+        DbSet<School> Schools { get; set; }
+
+
+        // Methods required by RepositoryBase class
+        // Added for DI
+        DbSet<T> Set<T>() where T : class;
+        DbEntityEntry Entry(object entity);
+    }
+
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IApplicationDbContext
     {
         public ApplicationDbContext()
             : base("DefaultConnection")

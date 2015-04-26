@@ -4,7 +4,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Nola.DAL;
 
-namespace Nola.Common
+namespace Nola.Core
 {
     public class ApplicationRoleManager : RoleManager<ApplicationRole, int>
     {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Web;
-using Nola.Common;
+using Nola.Core;
 using Nola.Models;
 
 namespace Nola.DAL.Configuration

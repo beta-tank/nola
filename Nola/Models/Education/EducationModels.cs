@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Nola.Common;
+using Nola.Core;
 
 namespace Nola.Models
 {

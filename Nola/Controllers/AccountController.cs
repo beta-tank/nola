@@ -8,7 +8,7 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using Nola.Common;
+using Nola.Core;
 using Nola.Models;
 
 namespace Nola.Controllers

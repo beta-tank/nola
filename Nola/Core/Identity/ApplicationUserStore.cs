@@ -2,7 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.DAL;
 
-namespace Nola.Common
+namespace Nola.Core
 {
     public interface IApplicationUserStore : IUserStore<ApplicationUser, int>
     {
