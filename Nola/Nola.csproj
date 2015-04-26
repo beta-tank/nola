@@ -248,7 +248,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Mappings\AutoMapperBootstrapper.cs" />
     <Compile Include="Mappings\DomainToModelsMappings.cs" />
     <Compile Include="Migrations\201504201613386_users.cs" />
     <Compile Include="Migrations\201504201613386_users.Designer.cs">

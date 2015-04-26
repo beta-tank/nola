@@ -23,9 +23,6 @@ namespace Nola.App_Start
         /// </summary>
         public static void Start() 
         {
-            // Init Automapper
-            AutoMapperConfiguration.Configure();
-            Mapper.AssertConfigurationIsValid();
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
             bootstrapper.Initialize(CreateKernel);
