@@ -7,7 +7,7 @@ using PagedList;
 
 namespace Nola.DAL
 {
-    public abstract class RepositoryBase<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class
     {
         private readonly IDbSet<T> dbset;
         protected RepositoryBase(IApplicationDbContext context)
@@ -16,11 +16,7 @@ namespace Nola.DAL
             dbset = Context.Set<T>();
         }
 
-        protected IApplicationDbContext Context
-        {
-            get;
-            private set;
-        }
+        protected IApplicationDbContext Context{ get; private set; }
 
         public virtual void Add(T entity)
         {
@@ -37,7 +33,7 @@ namespace Nola.DAL
         }
         public virtual void Delete(Expression<Func<T, bool>> where)
         {
-            IEnumerable<T> objects = dbset.Where<T>(where).AsEnumerable();
+            var objects = dbset.Where<T>(where);
             foreach (var obj in objects)
                 dbset.Remove(obj);
         }
@@ -51,12 +47,12 @@ namespace Nola.DAL
         }
         public virtual IEnumerable<T> GetAll()
         {
-            return dbset.ToList();
+            return dbset;
         }
 
         public virtual IEnumerable<T> GetMany(Expression<Func<T, bool>> where)
         {
-            return dbset.Where(where).ToList();
+            return dbset.Where(where);
         }
 
         /// <summary>
@@ -69,7 +65,7 @@ namespace Nola.DAL
         /// <returns></returns>
         public virtual IPagedList<T> GetPage<TOrder>(Page page, Expression<Func<T, bool>> where, Expression<Func<T, TOrder>> order)
         {
-            var results = dbset.OrderBy(order).Where(where).GetPage(page).ToList();
+            var results = dbset.OrderBy(order).Where(where).GetPage(page);
             var total = dbset.Count(where);
             return new StaticPagedList<T>(results, page.PageNumber, page.PageSize, total);
         }
