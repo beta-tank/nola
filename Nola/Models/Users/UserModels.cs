@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using Nola.Core;
+using Nola.DAL;
 
 namespace Nola.Models
 {
-    public class BaseUser
+    public class BaseUser : IEntity
     {
         public int Id { get; set; }
         public ApplicationUser ApplicationUser { get; set; }

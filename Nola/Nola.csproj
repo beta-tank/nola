@@ -253,6 +253,8 @@
     <Compile Include="DAL\Configuration\BaseUserConfiguration.cs" />
     <Compile Include="DAL\Configuration\StudentUserConfiguration.cs" />
     <Compile Include="DAL\DbContext.cs" />
+    <Compile Include="DAL\Infrastructure\BaseInheritanceRepository.cs" />
+    <Compile Include="DAL\Infrastructure\IEntity.cs" />
     <Compile Include="DAL\Infrastructure\IRepository.cs" />
     <Compile Include="DAL\Infrastructure\Page.cs" />
     <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />

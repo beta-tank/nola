@@ -7,7 +7,7 @@ using PagedList;
 
 namespace Nola.DAL
 {
-    public abstract class RepositoryBase<T> : IRepository<T> where T : class
+    public abstract class RepositoryBase<T> : IRepository<T> where T : class, IEntity
     {
         private readonly IDbSet<T> dbset;
         protected RepositoryBase(IApplicationDbContext context)
