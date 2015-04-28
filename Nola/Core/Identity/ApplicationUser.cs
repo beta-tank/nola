@@ -5,10 +5,11 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Nola.DAL;
 
 namespace Nola.Core
 {
-    public class ApplicationUser : IdentityUser<int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>
+    public class ApplicationUser : IdentityUser<int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IEntity
     {
         public bool IsBlocked { get; set; }
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
@@ -47,7 +48,7 @@ namespace Nola.Core
         }
     }
 
-    public class ApplicationClaim
+    public class ApplicationClaim : IEntity
     {
         public int Id { get; set; }
         public string Type { get; set; }
@@ -61,7 +62,7 @@ namespace Nola.Core
     {
     }
 
-    public class ApplicationUserClaim : IdentityUserClaim<int>
+    public class ApplicationUserClaim : IdentityUserClaim<int>, IEntity
     {
     }
 
@@ -69,7 +70,7 @@ namespace Nola.Core
     {        
     }
 
-    public class ApplicationRole : IdentityRole<int, ApplicationUserRole>
+    public class ApplicationRole : IdentityRole<int, ApplicationUserRole>, IEntity
     {
         public string DisplayName { get; set; }
         public virtual ICollection<ApplicationClaim> Claims { get; set; }
