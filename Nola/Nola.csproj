@@ -258,6 +258,8 @@
     <Compile Include="DAL\Infrastructure\IRepository.cs" />
     <Compile Include="DAL\Infrastructure\Page.cs" />
     <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />
+    <Compile Include="DAL\Repository\StudentUserRepository.cs" />
+    <Compile Include="DAL\Repository\TeacherUserRepository.cs" />
     <Compile Include="DAL\Repository\UserRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
