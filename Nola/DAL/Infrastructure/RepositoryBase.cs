@@ -41,7 +41,7 @@ namespace Nola.DAL
             foreach (var obj in objects)
                 dbset.Remove(obj);
         }
-        public virtual T GetById(long id)
+        public virtual T GetById(int id)
         {
             return dbset.Find(id);
         }
