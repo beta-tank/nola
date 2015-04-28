@@ -20,8 +20,6 @@ namespace Nola.DAL
         IDbSet<ApplicationRole> Roles { get; set; }
         DbSet<ApplicationClaim> Claims { get; set; }
         DbSet<BaseUser> BaseUsers { get; set; }
-        DbSet<StudentUser> StudentUsers { get; set; }
-        DbSet<TeacherUser> TeacherUsers { get; set; }
         DbSet<School> Schools { get; set; }
 
 
@@ -50,8 +48,6 @@ namespace Nola.DAL
         }
         public DbSet<ApplicationClaim> Claims { get; set; }
         public DbSet<BaseUser> BaseUsers { get; set; }
-        public DbSet<StudentUser> StudentUsers { get; set; }
-        public DbSet<TeacherUser> TeacherUsers { get; set; } 
         public DbSet<School> Schools { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
