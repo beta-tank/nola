@@ -27,6 +27,7 @@ namespace Nola.DAL
         // Added for DI
         DbSet<T> Set<T>() where T : class;
         DbEntityEntry Entry(object entity);
+        void Commit();
     }
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IApplicationDbContext

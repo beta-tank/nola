@@ -78,6 +78,11 @@ namespace Nola.DAL
         public T Get(Expression<Func<T, bool>> where)
         {
             return dbset.OfType<T>().Where(where).FirstOrDefault();
-        } 
+        }
+
+        public void Commit()
+        {
+            Context.Commit();
+        }
     }
 }
