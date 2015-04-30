@@ -13,11 +13,5 @@ namespace Nola.Models
         public string Name { get; set; }
         public IEnumerable<ApplicationUser> Peoples { get; set; }
 
-    }
-
-    public enum TeachingType
-    {
-        First = 1,
-        Second
-    }
+    }   
 }
