@@ -21,6 +21,7 @@ namespace Nola.DAL
         DbSet<ApplicationClaim> Claims { get; set; }
         DbSet<BaseUser> BaseUsers { get; set; }
         DbSet<School> Schools { get; set; }
+        DbSet<ImageBase> Images { get; set; }
 
 
         // Methods required by RepositoryBase class
@@ -50,6 +51,7 @@ namespace Nola.DAL
         public DbSet<ApplicationClaim> Claims { get; set; }
         public DbSet<BaseUser> BaseUsers { get; set; }
         public DbSet<School> Schools { get; set; }
+        public DbSet<ImageBase> Images { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -60,6 +62,9 @@ namespace Nola.DAL
             modelBuilder.Configurations.Add(new BaseUserConfiguration());
             modelBuilder.Configurations.Add(new StudentUserConfiguration());
             modelBuilder.Configurations.Add(new TeacherUserConfiguration());
+            modelBuilder.Configurations.Add(new ImageBaseConfiguration());
+            modelBuilder.Configurations.Add(new ImageLocalConfiguration());
+            modelBuilder.Configurations.Add(new ImageRemoteConfiguration());
         }
     }
 

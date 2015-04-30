@@ -13,7 +13,7 @@ namespace Nola.Models
         public ApplicationUser ApplicationUser { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public IImage AvatarImage { get; set; }
+        public ImageBase AvatarImage { get; set; }
         public School School { get; set; }
     }
 

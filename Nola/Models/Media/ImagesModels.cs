@@ -7,13 +7,14 @@ using Nola.DAL;
 namespace Nola.Models
 {
 
-    public interface IImage : IEntity
+    public class ImageBase : IEntity
     {
-        string Link { get; set; }
-        string Description { get; set; }
+        public int Id { get; set; }
+        public string Link { get; set; }
+        public string Description { get; set; }
     }
 
-    public class LocalImage : IImage
+    public class ImageLocal : ImageBase
     {
         public int Id { get; set; }
         public string Link { get; set; }
@@ -23,7 +24,7 @@ namespace Nola.Models
         public string Path { get; set; }       
     }
 
-    public class RemoteImage : IImage
+    public class ImageRemote : ImageBase
     {
         public int Id { get; set; }
         public string Link { get; set; }
