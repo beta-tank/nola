@@ -2,7 +2,7 @@
 
 namespace Nola.DAL.Repository
 {
-    public class TeacherUserRepository : BaseInheritanceRepository<BaseUser, TeacherUser>, ITeacherUserRepository
+    public class TeacherUserRepository : RepositoryBaseInheritance<BaseUser, TeacherUser>, ITeacherUserRepository
     {
         protected TeacherUserRepository(IApplicationDbContext context)
             : base(context)
