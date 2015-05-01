@@ -266,6 +266,8 @@
     <Compile Include="DAL\Infrastructure\IRepository.cs" />
     <Compile Include="DAL\Infrastructure\Page.cs" />
     <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />
+    <Compile Include="DAL\Infrastructure\UnitOfWork.cs" />
+    <Compile Include="DAL\Repository\BaseUserRepository.cs" />
     <Compile Include="DAL\Repository\SchoolRepository.cs" />
     <Compile Include="DAL\Repository\StudentUserRepository.cs" />
     <Compile Include="DAL\Repository\TeacherUserRepository.cs" />
@@ -302,6 +304,7 @@
     <Compile Include="Models\Education\Enums.cs" />
     <Compile Include="Models\Users\UserModels.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -457,7 +460,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\" />
-    <Folder Include="Services\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

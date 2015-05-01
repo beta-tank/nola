@@ -80,9 +80,5 @@ namespace Nola.DAL
             return dbset.OfType<THeir>().Where(where).FirstOrDefault();
         }
 
-        public void Commit()
-        {
-            Context.Commit();
-        }
     }
 }

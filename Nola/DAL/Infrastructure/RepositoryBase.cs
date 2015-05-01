@@ -70,11 +70,6 @@ namespace Nola.DAL
             return new StaticPagedList<T>(results, page.PageNumber, page.PageSize, total);
         }
 
-        public void Commit()
-        {
-            Context.Commit();
-        }
-
         public T Get(Expression<Func<T, bool>> where)
         {
             return dbset.Where(where).FirstOrDefault<T>();
