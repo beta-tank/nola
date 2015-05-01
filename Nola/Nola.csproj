@@ -126,6 +126,10 @@
       <HintPath>..\packages\Ninject.3.2.2.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Extensions.Conventions">
+      <HintPath>..\packages\Ninject.Extensions.Conventions.3.2.0.0\lib\net45-full\Ninject.Extensions.Conventions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject.Web.Common, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
@@ -241,6 +245,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Core\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Core\Identity\ApplicationUser.cs" />
     <Compile Include="Core\Identity\ApplicationUserStore.cs" />
@@ -452,6 +457,8 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\ViewModels\" />
+    <Folder Include="Services\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201504201613386_users.resx">
