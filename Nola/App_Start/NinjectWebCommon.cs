@@ -1,6 +1,8 @@
 using AutoMapper;
+using Ninject.Planning.Bindings;
 using Nola.DAL;
 using Nola.Mappings;
+using Ninject.Extensions.Conventions;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Nola.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Nola.App_Start.NinjectWebCommon), "Stop")]
@@ -65,7 +67,14 @@ namespace Nola.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
-        }        
+           kernel.Bind<IApplicationDbContext>().To<ApplicationDbContext>().InRequestScope();
+            kernel.Bind(o =>
+            {
+                o.FromThisAssembly() // Scans currently assembly
+                .SelectAllClasses() // Retrieve all non-abstract classes
+                .BindDefaultInterface() // Binds the default interface to them;
+                .Configure(b => b.InRequestScope());
+            });
+        }
     }
 }
