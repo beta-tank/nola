@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using FluentValidation;
+using FluentValidation.Attributes;
 
 namespace Nola.ViewModels
 {
@@ -46,20 +48,27 @@ namespace Nola.ViewModels
         public string Email { get; set; }
     }
 
+    [Validator(typeof(LoginViewModelValidator))]
     public class LoginViewModel
     {
-        [Required]
         [Display(Name = "Email")]
-        [EmailAddress]
         public string Email { get; set; }
 
-        [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
-        [Display(Name = "Remember me?")]
+        [Display(Name = "Запомнить на этом устройстве?")]
         public bool RememberMe { get; set; }
+    }
+
+    public class LoginViewModelValidator : AbstractValidator<LoginViewModel>
+    {
+        public LoginViewModelValidator()
+        {
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Введите корректный Email");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Пароль не должен быть пустым").Length(6, 30).WithMessage("Пароль должен быть от 6 до 30 символов");
+        }
     }
 
     public class RegisterViewModel
