@@ -192,4 +192,4 @@ ModelManifest.xml
 AppSettings/
 
 #Azure settings
-Properties/PublishProfiles
+Nola/Properties/PublishProfiles/
