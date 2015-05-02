@@ -5,7 +5,7 @@
         void Commit();
     }
 
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         protected IApplicationDbContext DataContext;
 
