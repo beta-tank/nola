@@ -134,7 +134,7 @@ namespace Nola.Controllers
                     return View("Lockout");
                 case SignInStatus.Failure:
                 default:
-                    ModelState.AddModelError("", "Invalid code.");
+                    ModelState.AddModelError("", "Код не верен.");
                     return View(model);
             }
         }

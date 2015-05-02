@@ -88,4 +88,68 @@ namespace Nola.Test.ViewModelsTests
             validator.ShouldNotHaveValidationErrorFor(model => model.Code, "code");
         }
     }
+
+    [TestFixture]
+    public class RegisterViewModelValidatorTests
+    {
+        private RegisterViewModelValidator validator;
+
+        [SetUp]
+        public void Setup()
+        {
+            validator = new RegisterViewModelValidator();
+        }
+
+        [Test]
+        public void Email_Valid_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Email, "test@test.com");
+        }
+
+        [Test]
+        public void Email_NotValid_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Email, "testtest.com");
+        }
+
+        [Test]
+        public void Password_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Password, null as string);
+        }
+
+        [Test]
+        public void Password_ShortLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Password, "12345");
+        }
+
+        [Test]
+        public void Password_LongLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Password, "abcdefghijklmnopqrstuvwxyz12345");
+        }
+
+        [Test]
+        public void Password_NormalLength_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Password, "abcdefgh");
+        }
+
+        [Test]
+        public void ConfirmPassword_EqualsPassword_NotHaveErrors()
+        {
+            var password = "abcdefgh";
+            var model = new RegisterViewModel() { Password = password , ConfirmPassword = password};
+            validator.ShouldNotHaveValidationErrorFor(x => x.ConfirmPassword, model);
+        }
+
+        [Test]
+        public void ConfirmPassword_NotEqualsPassword_HaveErrors()
+        {
+            var password = "abcdefgh";
+            var model = new RegisterViewModel() { Password = password, ConfirmPassword = "123" };
+            validator.ShouldHaveValidationErrorFor(x => x.ConfirmPassword, model);
+        }
+    }
 }

@@ -73,28 +73,33 @@ namespace Nola.ViewModels
     {
         public LoginViewModelValidator()
         {
-            RuleFor(x => x.Email).EmailAddress().WithMessage("Введите корректный Email");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("Пароль не должен быть пустым").Length(6, 30).WithMessage("Пароль должен быть от 6 до 30 символов");
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Введите корректный {PropertyName}");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("{PropertyName} не должен быть пустым").Length(6, 30).WithMessage("{PropertyName} должен быть от {MinLength} до {MaxLength} символов");
         }
     }
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "Пароль")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Display(Name = "Повторите пароль")]
         public string ConfirmPassword { get; set; }
+    }
+
+    public class RegisterViewModelValidator : AbstractValidator<RegisterViewModel>
+    {
+        public RegisterViewModelValidator()
+        {
+            RuleFor(x => x.Email).EmailAddress().WithMessage("Введите корректный {PropertyName}");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("{PropertyName} не должен быть пустым").Length(6, 30).WithMessage("{PropertyName} должен быть от {MinLength} до {MaxLength} символов");
+            RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Пароли не совпадают");
+        }
     }
 
     public class ResetPasswordViewModel
