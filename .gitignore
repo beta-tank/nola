@@ -190,3 +190,6 @@ ModelManifest.xml
 
 # Secret settings
 AppSettings/
+
+#Azure settings
+C:\Dropbox\Properties/PublishProfiles
