@@ -27,18 +27,25 @@ namespace Nola.ViewModels
 
     public class VerifyCodeViewModel
     {
-        [Required]
         public string Provider { get; set; }
 
-        [Required]
-        [Display(Name = "Code")]
+        [Display(Name = "Код")]
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "Remember this browser?")]
+        [Display(Name = "Запомнить этот браузер?")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
+    }
+
+    public class VerifyCodeViewModelValidator : AbstractValidator<VerifyCodeViewModel>
+    {
+        public VerifyCodeViewModelValidator()
+        {
+            RuleFor(x => x.Provider).NotNull().WithMessage("Не указан провайдер авторизации");
+            RuleFor(x => x.Code).NotNull().WithMessage("Не указан код авторизации");
+        }
     }
 
     public class ForgotViewModel

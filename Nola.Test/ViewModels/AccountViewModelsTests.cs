@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Nola.Test.ViewModelsTests
 {
     [TestFixture]
-    public class LoginViewModelValidatorTest
+    public class LoginViewModelValidatorTests
     {
         private  LoginViewModelValidator validator;
 
@@ -50,6 +50,42 @@ namespace Nola.Test.ViewModelsTests
         public void Password_NormalLength_NotHaveErrors()
         {
             validator.ShouldNotHaveValidationErrorFor(model => model.Password, "abcdefgh");
+        }
+    }
+
+    [TestFixture]
+    public class VerifyCodeViewModelValidatorTests
+    {
+        private VerifyCodeViewModelValidator validator;
+
+        [SetUp]
+        public void Setup()
+        {
+            validator = new VerifyCodeViewModelValidator();
+        }
+
+        [Test]
+        public void Provider_Null_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Provider, null as string);
+        }
+
+        [Test]
+        public void Provider_String_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Provider, "provider");
+        }
+
+        [Test]
+        public void Code_Null_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Code, null as string);
+        }
+
+        [Test]
+        public void Code_String_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Code, "code");
         }
     }
 }
