@@ -280,27 +280,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201504201613386_users.cs" />
-    <Compile Include="Migrations\201504201613386_users.Designer.cs">
-      <DependentUpon>201504201613386_users.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504201626193_users1.cs" />
-    <Compile Include="Migrations\201504201626193_users1.Designer.cs">
-      <DependentUpon>201504201626193_users1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504241341323_users2.cs" />
-    <Compile Include="Migrations\201504241341323_users2.Designer.cs">
-      <DependentUpon>201504241341323_users2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504241359331_users3.cs" />
-    <Compile Include="Migrations\201504241359331_users3.Designer.cs">
-      <DependentUpon>201504241359331_users3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201504241402462_users4.cs" />
-    <Compile Include="Migrations\201504241402462_users4.Designer.cs">
-      <DependentUpon>201504241402462_users4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
@@ -308,6 +287,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\NolaDB.mdf" />
+    <Content Include="App_Data\NolaDB_log.ldf">
+      <DependentUpon>NolaDB.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\PagedList.css" />
     <Content Include="Content\SIte.min.css">
@@ -456,28 +439,10 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
     <Folder Include="Core\" />
     <Folder Include="Mappings\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201504201613386_users.resx">
-      <DependentUpon>201504201613386_users.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504201626193_users1.resx">
-      <DependentUpon>201504201626193_users1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504241341323_users2.resx">
-      <DependentUpon>201504241341323_users2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504241359331_users3.resx">
-      <DependentUpon>201504241359331_users3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201504241402462_users4.resx">
-      <DependentUpon>201504241402462_users4.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nola.Core\Nola.Core.csproj">

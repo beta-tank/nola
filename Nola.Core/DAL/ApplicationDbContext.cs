@@ -38,6 +38,7 @@ namespace Nola.Core.DAL
             modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
             modelBuilder.Configurations.Add(new ApplicationClaimConfiguration());
             modelBuilder.Configurations.Add(new ApplicationRoleConfiguration());
+            modelBuilder.Configurations.Add(new ApplicationUserConfiguration());
             modelBuilder.Configurations.Add(new BaseUserConfiguration());
             modelBuilder.Configurations.Add(new StudentUserConfiguration());
             modelBuilder.Configurations.Add(new TeacherUserConfiguration());

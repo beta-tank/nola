@@ -32,9 +32,16 @@ namespace Nola
                 {
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser, int>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                        regenerateIdentityCallback: (manager, user) => manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie),
                         getUserIdCallback: (id) => (id.GetUserId<int>()))
                 }
+                //Provider = new CookieAuthenticationProvider
+                //{
+                //    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser, int>(
+                //        validateInterval: TimeSpan.FromMinutes(30),
+                //        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                //        getUserIdCallback: (id) => (id.GetUserId<int>()))
+                //}
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

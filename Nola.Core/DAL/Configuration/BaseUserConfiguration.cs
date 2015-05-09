@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
 using Nola.Core.Models.Users;
 
 namespace Nola.Core.DAL.Configuration
@@ -7,6 +8,11 @@ namespace Nola.Core.DAL.Configuration
     {
         public BaseUserConfiguration()
         {
+            HasKey(r => r.Id);
+            Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+            HasRequired(r => r.ApplicationUser);//.WithRequiredPrincipal();
+            //HasRequired(r => r.ApplicationUser).WithOptional(r => r.Id);
+            //HasOptional(r => r.ApplicationUserUser);//.Map(m => m.MapKey("ModifiedBy"));
             ToTable("BaseUsers");
         }
     }

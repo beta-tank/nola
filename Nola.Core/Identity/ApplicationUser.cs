@@ -11,13 +11,13 @@ namespace Nola.Core.Identity
     public class ApplicationUser : IdentityUser<int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IEntity
     {
         public bool IsBlocked { get; set; }
-        public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
-        {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
-            var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
+        //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
+        //{
+        //    // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+        //    var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             
-            return userIdentity;
-        }
+        //    return userIdentity;
+        //}
 
         public ApplicationUser()
         {

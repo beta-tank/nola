@@ -7,13 +7,13 @@ namespace Nola.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class users1 : IMigrationMetadata
+    public sealed partial class User : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(users1));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(User));
         
         string IMigrationMetadata.Id
         {
-            get { return "201504201626193_users1"; }
+            get { return "201505091422342_User"; }
         }
         
         string IMigrationMetadata.Source

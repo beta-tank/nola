@@ -106,6 +106,7 @@
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\Configuration\ApplicationClaimConfiguration.cs" />
     <Compile Include="DAL\Configuration\ApplicationRoleConfiguration.cs" />
+    <Compile Include="DAL\Configuration\ApplicationUserConfiguration.cs" />
     <Compile Include="DAL\Configuration\BaseUserConfiguration.cs" />
     <Compile Include="DAL\Configuration\ImageBaseConfiguration.cs" />
     <Compile Include="DAL\Configuration\ImageLocalConfiguration.cs" />
@@ -125,6 +126,15 @@
     <Compile Include="Identity\EmailService.cs" />
     <Compile Include="Identity\SmsService.cs" />
     <Compile Include="Mappings\DomainToModelsMappings.cs" />
+    <Compile Include="Migrations\201505091420263_Init.cs" />
+    <Compile Include="Migrations\201505091420263_Init.Designer.cs">
+      <DependentUpon>201505091420263_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201505091422342_User.cs" />
+    <Compile Include="Migrations\201505091422342_User.Designer.cs">
+      <DependentUpon>201505091422342_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\PagedList.cs" />
     <Compile Include="Models\Education\Enums.cs" />
     <Compile Include="Models\Education\School.cs" />
@@ -136,6 +146,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505091420263_Init.resx">
+      <DependentUpon>201505091420263_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201505091422342_User.resx">
+      <DependentUpon>201505091422342_User.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

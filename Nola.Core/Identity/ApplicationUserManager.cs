@@ -94,8 +94,8 @@ namespace Nola.Core.Identity
         }
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
-        {   
-            var userIdentity = user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+        {
+            var userIdentity = ((ApplicationUserManager)UserManager).CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                 // Add custom user claims here
             userIdentity.Result.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
             foreach (var role in user.Roles)
