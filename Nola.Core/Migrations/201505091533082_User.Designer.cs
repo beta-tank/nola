@@ -13,7 +13,7 @@ namespace Nola.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201505091422342_User"; }
+            get { return "201505091533082_User"; }
         }
         
         string IMigrationMetadata.Source

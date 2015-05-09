@@ -10,6 +10,7 @@ namespace Nola.Core.DAL.Configuration
         {
             HasKey(r => r.Id);
             Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            //HasOptional(r => r.UserProfile);
         }
     }
 }

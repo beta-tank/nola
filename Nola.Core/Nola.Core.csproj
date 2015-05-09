@@ -126,13 +126,9 @@
     <Compile Include="Identity\EmailService.cs" />
     <Compile Include="Identity\SmsService.cs" />
     <Compile Include="Mappings\DomainToModelsMappings.cs" />
-    <Compile Include="Migrations\201505091420263_Init.cs" />
-    <Compile Include="Migrations\201505091420263_Init.Designer.cs">
-      <DependentUpon>201505091420263_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201505091422342_User.cs" />
-    <Compile Include="Migrations\201505091422342_User.Designer.cs">
-      <DependentUpon>201505091422342_User.cs</DependentUpon>
+    <Compile Include="Migrations\201505091533082_User.cs" />
+    <Compile Include="Migrations\201505091533082_User.Designer.cs">
+      <DependentUpon>201505091533082_User.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\PagedList.cs" />
@@ -148,11 +144,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505091420263_Init.resx">
-      <DependentUpon>201505091420263_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201505091422342_User.resx">
-      <DependentUpon>201505091422342_User.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505091533082_User.resx">
+      <DependentUpon>201505091533082_User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

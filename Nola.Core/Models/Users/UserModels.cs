@@ -7,7 +7,7 @@ namespace Nola.Core.Models.Users
     public class BaseUser : IEntity
     {
         public int Id { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public ImageBase AvatarImage { get; set; }

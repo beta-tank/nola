@@ -5,12 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core.Models;
+using Nola.Core.Models.Users;
 
 namespace Nola.Core.Identity
 {
     public class ApplicationUser : IdentityUser<int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IEntity
     {
         public bool IsBlocked { get; set; }
+        public virtual BaseUser UserProfile { get; set; }
         //public async Task<ClaimsIdentity> GenerateUserIdentityAsync(ApplicationUserManager manager)
         //{
         //    // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
