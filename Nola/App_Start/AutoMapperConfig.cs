@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
+using Nola.Core.Mappings;
 
-namespace Nola.Mappings
+namespace Nola
 {
     public static class AutoMapperBootstrapper
     {

@@ -1,7 +1,6 @@
 using AutoMapper;
 using Ninject.Planning.Bindings;
 using Nola.DAL;
-using Nola.Mappings;
 using Ninject.Extensions.Conventions;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Nola.App_Start.NinjectWebCommon), "Start")]

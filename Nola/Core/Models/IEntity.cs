@@ -1,4 +1,4 @@
-﻿namespace Nola.DAL
+﻿namespace Nola.Core.Models
 {
     public interface IEntity
     {

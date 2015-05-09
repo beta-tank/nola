@@ -1,4 +1,5 @@
 ﻿using Nola.Core;
+using Nola.Core.Data;
 
 namespace Nola.DAL.Repository
 {

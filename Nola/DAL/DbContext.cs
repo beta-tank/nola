@@ -1,36 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Data.Entity.Infrastructure;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core;
+using Nola.Core.Data;
 using Nola.DAL.Configuration;
 using Nola.Models;
 
 namespace Nola.DAL
 {
-    public interface IApplicationDbContext
-    {
-
-        IDbSet<ApplicationUser> Users { get; set; }
-        IDbSet<ApplicationRole> Roles { get; set; }
-        DbSet<ApplicationClaim> Claims { get; set; }
-        DbSet<BaseUser> BaseUsers { get; set; }
-        DbSet<School> Schools { get; set; }
-        DbSet<ImageBase> Images { get; set; }
-
-
-        // Methods required by RepositoryBase class
-        // Added for DI
-        DbSet<T> Set<T>() where T : class;
-        DbEntityEntry Entry(object entity);
-        void Commit();
-    }
-
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, ApplicationRole, int, ApplicationUserLogin, ApplicationUserRole, ApplicationUserClaim>, IApplicationDbContext
     {
         public ApplicationDbContext()

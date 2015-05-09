@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Nola.Core.Identity;
+using Nola.Core.Models;
 using Nola.DAL;
 
 namespace Nola.Core

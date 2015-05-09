@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Nola.Core;
+using Nola.Core.Identity;
 using Nola.Models;
 using Nola.Services;
 using Nola.ViewModels;

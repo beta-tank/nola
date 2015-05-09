@@ -1,10 +1,7 @@
-﻿namespace Nola.DAL
-{
-    public interface IUnitOfWork
-    {
-        void Commit();
-    }
+﻿using Nola.Core.Data;
 
+namespace Nola.DAL
+{
     public class UnitOfWork : IUnitOfWork
     {
         protected IApplicationDbContext DataContext;

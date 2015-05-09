@@ -5,6 +5,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Nola.Core;
+using Nola.Core.Identity;
 using Nola.DAL;
 using Owin;
 using Nola.Models;

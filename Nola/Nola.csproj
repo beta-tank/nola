@@ -258,20 +258,26 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\IdentityConfig.cs" />
-    <Compile Include="App_Start\NinjectWebCommon.cs" />
+    <Compile Include="App_Start\NinjectConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Core\Data\IApplicationDbContext.cs" />
+    <Compile Include="Core\Data\IRepository.cs" />
+    <Compile Include="Core\Data\IUnitOfWork.cs" />
     <Compile Include="Core\Identity\ApplicationRoleManager.cs" />
     <Compile Include="Core\Identity\ApplicationUser.cs" />
+    <Compile Include="Core\Identity\ApplicationUserManager.cs" />
     <Compile Include="Core\Identity\ApplicationUserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Mappings\DomainToModelsMappings.cs" />
+    <Compile Include="Core\Models\IEntity.cs" />
     <Compile Include="DAL\Configuration\ApplicationRoleConfiguration.cs" />
     <Compile Include="DAL\Configuration\ApplicationClaimConfiguration.cs" />
     <Compile Include="DAL\Configuration\ImageBaseConfiguration.cs" />
@@ -282,8 +288,6 @@
     <Compile Include="DAL\Configuration\StudentUserConfiguration.cs" />
     <Compile Include="DAL\DbContext.cs" />
     <Compile Include="DAL\Infrastructure\RepositoryBaseInheritance.cs" />
-    <Compile Include="DAL\Infrastructure\IEntity.cs" />
-    <Compile Include="DAL\Infrastructure\IRepository.cs" />
     <Compile Include="DAL\Infrastructure\Page.cs" />
     <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />
     <Compile Include="DAL\Infrastructure\UnitOfWork.cs" />
@@ -296,8 +300,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Mappings\AutoMapperBootstrapper.cs" />
-    <Compile Include="Mappings\DomainToModelsMappings.cs" />
     <Compile Include="Migrations\201504201613386_users.cs" />
     <Compile Include="Migrations\201504201613386_users.Designer.cs">
       <DependentUpon>201504201613386_users.cs</DependentUpon>
@@ -481,6 +483,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Mappings\" />
     <Folder Include="Models\ViewModels\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

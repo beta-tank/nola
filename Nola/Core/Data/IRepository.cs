@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Web.UI;
+using Nola.DAL;
 using PagedList;
 
-namespace Nola.DAL
+namespace Nola.Core.Data
 {
     public interface IRepository<T> where T : class
     {

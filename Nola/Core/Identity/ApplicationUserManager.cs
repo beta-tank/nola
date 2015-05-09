@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+using System;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using Nola.Core;
 using Nola.DAL;
-using Nola.Models;
 
-namespace Nola
+namespace Nola.Core.Identity
 {
     public class EmailService : IIdentityMessageService
     {

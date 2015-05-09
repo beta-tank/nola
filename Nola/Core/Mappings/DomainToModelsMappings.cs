@@ -1,10 +1,7 @@
-﻿using System;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using AutoMapper;
-using Nola.Core;
-using Nola.Models;
 
-namespace Nola.Mappings
+namespace Nola.Core.Mappings
 {
     public class DomainToModelsMappings : Profile
     {

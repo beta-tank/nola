@@ -5,6 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Web.DynamicData;
 using Ninject.Infrastructure.Language;
+using Nola.Core.Data;
+using Nola.Core.Models;
 using PagedList;
 
 namespace Nola.DAL
