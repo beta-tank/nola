@@ -1,8 +1,8 @@
 ﻿using Nola.Core;
 using Nola.Core.Data;
+using Nola.Core.Models.Users;
 using Nola.DAL;
 using Nola.DAL.Repository;
-using Nola.Models;
 
 namespace Nola.Services
 {

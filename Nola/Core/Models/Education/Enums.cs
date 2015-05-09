@@ -1,4 +1,4 @@
-﻿namespace Nola.Models
+﻿namespace Nola.Core.Models.Education
 {
     public enum TeachingType
     {

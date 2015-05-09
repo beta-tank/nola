@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Nola.Core;
-using Nola.Core.Models;
-using Nola.DAL;
+﻿using Nola.Core.Models.Education;
+using Nola.Core.Models.Media;
 
-namespace Nola.Models
+namespace Nola.Core.Models.Users
 {
     public class BaseUser : IEntity
     {

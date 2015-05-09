@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Web;
-using Nola.Models;
+using Nola.Core.Models.Users;
 
 namespace Nola.DAL.Configuration
 {

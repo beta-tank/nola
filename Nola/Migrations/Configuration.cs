@@ -1,5 +1,4 @@
 using Nola.Core;
-using Nola.Models;
 
 namespace Nola.Migrations
 {

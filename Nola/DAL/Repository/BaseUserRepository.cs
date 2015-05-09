@@ -1,6 +1,6 @@
 ﻿using Nola.Core;
 using Nola.Core.Data;
-using Nola.Models;
+using Nola.Core.Models.Users;
 
 namespace Nola.DAL.Repository
 {

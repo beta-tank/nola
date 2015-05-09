@@ -8,8 +8,10 @@ using System.Web;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core;
 using Nola.Core.Data;
+using Nola.Core.Models.Education;
+using Nola.Core.Models.Media;
+using Nola.Core.Models.Users;
 using Nola.DAL.Configuration;
-using Nola.Models;
 
 namespace Nola.DAL
 {

@@ -276,8 +276,15 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Core\Identity\EmailService.cs" />
+    <Compile Include="Core\Identity\SmsService.cs" />
     <Compile Include="Core\Mappings\DomainToModelsMappings.cs" />
+    <Compile Include="Core\Models\Common\PagedList.cs" />
+    <Compile Include="Core\Models\Education\Enums.cs" />
+    <Compile Include="Core\Models\Education\School.cs" />
     <Compile Include="Core\Models\IEntity.cs" />
+    <Compile Include="Core\Models\Media\ImagesModels.cs" />
+    <Compile Include="Core\Models\Users\UserModels.cs" />
     <Compile Include="DAL\Configuration\ApplicationRoleConfiguration.cs" />
     <Compile Include="DAL\Configuration\ApplicationClaimConfiguration.cs" />
     <Compile Include="DAL\Configuration\ImageBaseConfiguration.cs" />
@@ -321,12 +328,7 @@
       <DependentUpon>201504241402462_users4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Education\School.cs" />
     <Compile Include="Core\Identity\ClaimTypes.cs" />
-    <Compile Include="Models\Common\PagedList.cs" />
-    <Compile Include="Models\Education\Enums.cs" />
-    <Compile Include="Models\Users\UserModels.cs" />
-    <Compile Include="Models\Media\ImagesModels.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
@@ -484,7 +486,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Models\ViewModels\" />
+    <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

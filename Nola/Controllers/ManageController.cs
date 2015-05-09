@@ -7,7 +7,6 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Nola.Core.Identity;
-using Nola.Models;
 using Nola.ViewModels;
 
 namespace Nola.Controllers

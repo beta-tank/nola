@@ -5,7 +5,6 @@ using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using System.Web;
 using Nola.Core;
-using Nola.Models;
 
 namespace Nola.DAL.Configuration
 {

@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Nola.Core;
-using Nola.Core.Models;
-using Nola.DAL;
+﻿using System.Collections.Generic;
 
-namespace Nola.Models
+namespace Nola.Core.Models.Education
 {
     public class School : IEntity
     {

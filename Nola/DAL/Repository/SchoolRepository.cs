@@ -1,5 +1,5 @@
 ﻿using Nola.Core.Data;
-using Nola.Models;
+using Nola.Core.Models.Education;
 
 namespace Nola.DAL.Repository
 {

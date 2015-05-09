@@ -8,7 +8,6 @@ using Nola.Core;
 using Nola.Core.Identity;
 using Nola.DAL;
 using Owin;
-using Nola.Models;
 
 namespace Nola
 {

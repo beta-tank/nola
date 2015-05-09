@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Nola.Core.Models;
-using Nola.DAL;
-
-namespace Nola.Models
+﻿namespace Nola.Core.Models.Media
 {
 
     public class ImageBase : IEntity
