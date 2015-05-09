@@ -1,8 +1,8 @@
+using System;
+using System.Data.Entity.Migrations;
+
 namespace Nola.Migrations
-{
-    using System;
-    using System.Data.Entity.Migrations;
-    
+{     
     public partial class User : DbMigration
     {
         public override void Up()

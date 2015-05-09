@@ -71,6 +71,11 @@ namespace Nola.App_Start
                 .SelectAllClasses() // Retrieve all non-abstract classes
                 .BindDefaultInterface() // Binds the default interface to them;
                 .Configure(b => b.InRequestScope());
+
+                o.FromAssembliesMatching("Nola.Core.dll") // Scans currently assembly
+                .SelectAllClasses() // Retrieve all non-abstract classes
+                .BindDefaultInterface() // Binds the default interface to them;
+                .Configure(b => b.InRequestScope());
             });
         }
     }

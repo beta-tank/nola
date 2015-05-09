@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Security;
 using AutoMapper;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
@@ -23,7 +24,7 @@ namespace Nola.Core.Identity
         {
             get
             {
-                return roleManager ?? HttpContext.Current.GetOwinContext().Get<ApplicationRoleManager>();
+                return roleManager;
             }
             private set
             {
@@ -40,6 +41,9 @@ namespace Nola.Core.Identity
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
         {
             var manager = new ApplicationUserManager(new ApplicationUserStore(context.Get<ApplicationDbContext>()));
+            manager.RoleManager =
+                new ApplicationRoleManager(
+                    new RoleStore<ApplicationRole, int, ApplicationUserRole>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
             {
@@ -95,12 +99,14 @@ namespace Nola.Core.Identity
 
         public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            var userIdentity = ((ApplicationUserManager)UserManager).CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
+            var userIdentity = base.CreateUserIdentityAsync(user);
+            //var userIdentity = ((ApplicationUserManager)UserManager).CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                 // Add custom user claims here
+            var roles = ((ApplicationUserManager) UserManager).GetRoles(user.Id);
             userIdentity.Result.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
-            foreach (var role in user.Roles)
+            foreach (var role in roles)
             {
-                userIdentity.Result.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindById(role.RoleId).Claims));
+                userIdentity.Result.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));
             }
             return userIdentity;
         }
