@@ -1,4 +1,5 @@
-using Nola.Core;
+using Nola.Core.DAL;
+using Nola.Core.Identity;
 
 namespace Nola.Migrations
 {
@@ -7,26 +8,26 @@ namespace Nola.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Nola.DAL.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ApplicationDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Nola.DAL.ApplicationDbContext context)
+        protected override void Seed(ApplicationDbContext context)
         {
             SeedClaims(context);
             SeedRoles(context);
             context.Commit();
         }
 
-        private static void SeedClaims(Nola.DAL.ApplicationDbContext context)
+        private static void SeedClaims(ApplicationDbContext context)
         {
             context.Claims.AddOrUpdate(new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.AddTest });
         }
 
-        private static void SeedRoles(Nola.DAL.ApplicationDbContext context)
+        private static void SeedRoles(ApplicationDbContext context)
         {
             var claims = context.Claims.ToList();
             var role = new ApplicationRole() { Name = "admin", DisplayName = "Администратор", Claims = claims };

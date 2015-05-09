@@ -266,43 +266,16 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Core\Data\IApplicationDbContext.cs" />
-    <Compile Include="Core\Data\IRepository.cs" />
-    <Compile Include="Core\Data\IUnitOfWork.cs" />
-    <Compile Include="Core\Identity\ApplicationRoleManager.cs" />
-    <Compile Include="Core\Identity\ApplicationUser.cs" />
-    <Compile Include="Core\Identity\ApplicationUserManager.cs" />
-    <Compile Include="Core\Identity\ApplicationUserStore.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Core\Identity\EmailService.cs" />
-    <Compile Include="Core\Identity\SmsService.cs" />
-    <Compile Include="Core\Mappings\DomainToModelsMappings.cs" />
-    <Compile Include="Core\Models\Common\PagedList.cs" />
-    <Compile Include="Core\Models\Education\Enums.cs" />
-    <Compile Include="Core\Models\Education\School.cs" />
-    <Compile Include="Core\Models\IEntity.cs" />
-    <Compile Include="Core\Models\Media\ImagesModels.cs" />
-    <Compile Include="Core\Models\Users\UserModels.cs" />
-    <Compile Include="DAL\Configuration\ApplicationRoleConfiguration.cs" />
-    <Compile Include="DAL\Configuration\ApplicationClaimConfiguration.cs" />
-    <Compile Include="DAL\Configuration\ImageBaseConfiguration.cs" />
-    <Compile Include="DAL\Configuration\ImageLocalConfiguration.cs" />
-    <Compile Include="DAL\Configuration\ImageRemoteConfiguration.cs" />
-    <Compile Include="DAL\Configuration\TeacherUserConfiguration.cs" />
-    <Compile Include="DAL\Configuration\BaseUserConfiguration.cs" />
-    <Compile Include="DAL\Configuration\StudentUserConfiguration.cs" />
-    <Compile Include="DAL\DbContext.cs" />
-    <Compile Include="DAL\Infrastructure\RepositoryBaseInheritance.cs" />
-    <Compile Include="DAL\Infrastructure\Page.cs" />
-    <Compile Include="DAL\Infrastructure\RepositoryBase.cs" />
-    <Compile Include="DAL\Infrastructure\UnitOfWork.cs" />
-    <Compile Include="DAL\Repository\BaseUserRepository.cs" />
-    <Compile Include="DAL\Repository\SchoolRepository.cs" />
-    <Compile Include="DAL\Repository\StudentUserRepository.cs" />
-    <Compile Include="DAL\Repository\TeacherUserRepository.cs" />
-    <Compile Include="DAL\Repository\UserRepository.cs" />
+    <Compile Include="Data\RepositoryBase.cs" />
+    <Compile Include="Data\RepositoryBaseInheritance.cs" />
+    <Compile Include="Data\Repository\BaseUserRepository.cs" />
+    <Compile Include="Data\Repository\SchoolRepository.cs" />
+    <Compile Include="Data\Repository\StudentUserRepository.cs" />
+    <Compile Include="Data\Repository\TeacherUserRepository.cs" />
+    <Compile Include="Data\Repository\UserRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -328,7 +301,6 @@
       <DependentUpon>201504241402462_users4.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Core\Identity\ClaimTypes.cs" />
     <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
@@ -485,6 +457,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Core\" />
     <Folder Include="Mappings\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />
@@ -505,6 +478,12 @@
     <EmbeddedResource Include="Migrations\201504241402462_users4.resx">
       <DependentUpon>201504241402462_users4.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Nola.Core\Nola.Core.csproj">
+      <Project>{b512a9d2-bd35-46f6-a28a-d71fe60be41b}</Project>
+      <Name>Nola.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

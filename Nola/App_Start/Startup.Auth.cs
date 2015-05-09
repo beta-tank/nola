@@ -4,9 +4,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Nola.Core;
+using Nola.Core.DAL;
 using Nola.Core.Identity;
-using Nola.DAL;
 using Owin;
 
 namespace Nola
