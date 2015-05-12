@@ -67,25 +67,15 @@ namespace Nola.App_Start
         {
             kernel.Bind(o =>
             {
-                o.FromThisAssembly() // Scans currently assembly
-                .SelectAllClasses() // Retrieve all non-abstract classes
-                .BindDefaultInterface() // Binds the default interface to them;
-                .Configure(b => b.InRequestScope());
+                //o.FromThisAssembly() // Scans currently assembly
+                //.SelectAllClasses() // Retrieve all non-abstract classes
+                //.BindDefaultInterface() // Binds the default interface to them;
+                //.Configure(b => b.InRequestScope());
 
                 o.FromAssembliesMatching("Nola.*.dll") // Select assembly
                 .SelectAllClasses() // Retrieve all non-abstract classes
                 .BindDefaultInterface() // Binds the default interface to them;
                 .Configure(b => b.InRequestScope());
-
-                //o.FromAssembliesMatching("Nola.Data.dll") // Select assembly
-                //.SelectAllClasses() // Retrieve all non-abstract classes
-                //.BindDefaultInterface() // Binds the default interface to them;
-                //.Configure(b => b.InRequestScope());
-
-                //o.FromAssembliesMatching("Nola.Service.dll") // Select assembly
-                //.SelectAllClasses() // Retrieve all non-abstract classes
-                //.BindDefaultInterface() // Binds the default interface to them;
-                //.Configure(b => b.InRequestScope());
             });
         }
     }
