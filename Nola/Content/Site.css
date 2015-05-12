@@ -6797,6 +6797,9 @@ a.list-group-item-danger.active:focus {
 .popover {
   color: #2c3e50;
 }
+body {
+  padding-top: 70px;
+}
 @font-face {
   font-family: 'Oswald';
   src: url('fonts/oswald-regular.eot');
