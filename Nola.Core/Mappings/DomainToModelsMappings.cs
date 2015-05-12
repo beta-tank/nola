@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 using AutoMapper;
-using Nola.Core.Identity;
+using Nola.Core.Models.Users;
 
 namespace Nola.Core.Mappings
 {

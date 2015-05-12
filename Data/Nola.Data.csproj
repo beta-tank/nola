@@ -31,6 +31,18 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,13 +52,41 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationDbContext.cs" />
+    <Compile Include="Configuration\ApplicationClaimConfiguration.cs" />
+    <Compile Include="Configuration\ApplicationRoleConfiguration.cs" />
+    <Compile Include="Configuration\ApplicationUserConfiguration.cs" />
+    <Compile Include="Configuration\BaseUserConfiguration.cs" />
+    <Compile Include="Configuration\ImageBaseConfiguration.cs" />
+    <Compile Include="Configuration\ImageLocalConfiguration.cs" />
+    <Compile Include="Configuration\ImageRemoteConfiguration.cs" />
+    <Compile Include="Configuration\StudentUserConfiguration.cs" />
+    <Compile Include="Configuration\TeacherUserConfiguration.cs" />
+    <Compile Include="Migrations\201505091533082_User.cs" />
+    <Compile Include="Migrations\201505091533082_User.Designer.cs">
+      <DependentUpon>201505091533082_User.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RepositoryBase.cs" />
+    <Compile Include="RepositoryBaseInheritance.cs" />
+    <Compile Include="Repository\BaseUserRepository.cs" />
+    <Compile Include="Repository\SchoolRepository.cs" />
+    <Compile Include="Repository\StudentUserRepository.cs" />
+    <Compile Include="Repository\TeacherUserRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="UnitOfWork.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Nola.Core\Nola.Core.csproj">
       <Project>{b512a9d2-bd35-46f6-a28a-d71fe60be41b}</Project>
       <Name>Nola.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201505091533082_User.resx">
+      <DependentUpon>201505091533082_User.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

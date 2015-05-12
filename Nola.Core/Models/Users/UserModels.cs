@@ -1,5 +1,4 @@
-﻿using Nola.Core.Identity;
-using Nola.Core.Models.Education;
+﻿using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
 
 namespace Nola.Core.Models.Users

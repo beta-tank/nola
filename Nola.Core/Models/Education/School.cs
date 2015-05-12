@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Nola.Core.Identity;
+using Nola.Core.Models.Users;
 
 namespace Nola.Core.Models.Education
 {

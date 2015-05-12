@@ -1,6 +1,5 @@
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
-using Nola.Core.Identity;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
 using Nola.Core.Models.Users;
