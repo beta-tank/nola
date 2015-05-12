@@ -1,4 +1,8 @@
+using System.Data.Entity.Migrations;
 using System.Linq;
+using Data.Identity;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core.Models.Users;
 using ClaimTypes = Nola.Core.Models.Users.ClaimTypes;
 

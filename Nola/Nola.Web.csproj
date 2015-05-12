@@ -269,18 +269,10 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Data\RepositoryBase.cs" />
-    <Compile Include="Data\RepositoryBaseInheritance.cs" />
-    <Compile Include="Data\Repository\BaseUserRepository.cs" />
-    <Compile Include="Data\Repository\SchoolRepository.cs" />
-    <Compile Include="Data\Repository\StudentUserRepository.cs" />
-    <Compile Include="Data\Repository\TeacherUserRepository.cs" />
-    <Compile Include="Data\Repository\UserRepository.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Services\UserService.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -439,7 +431,6 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Core\" />
     <Folder Include="Mappings\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Base\" />

@@ -1,7 +1,8 @@
-﻿using Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core.Models.Users;
 
-namespace Nola.Service.Identity
+namespace Data.Identity
 {
     public interface IApplicationUserStore : IUserStore<ApplicationUser, int>
     {

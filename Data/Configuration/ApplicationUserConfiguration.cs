@@ -1,4 +1,6 @@
-﻿using Nola.Core.Models.Users;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Data.Entity.ModelConfiguration;
+using Nola.Core.Models.Users;
 
 namespace Data.Configuration
 {

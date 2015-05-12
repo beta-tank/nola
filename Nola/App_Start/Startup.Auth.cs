@@ -1,12 +1,12 @@
 ﻿using System;
 using Data;
+using Data.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Nola.Core.Models.Users;
-using Nola.Service.Identity;
 using Owin;
 
 namespace Nola

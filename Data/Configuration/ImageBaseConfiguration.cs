@@ -1,4 +1,5 @@
-﻿using Nola.Core.Models.Media;
+﻿using System.Data.Entity.ModelConfiguration;
+using Nola.Core.Models.Media;
 
 namespace Data.Configuration
 {

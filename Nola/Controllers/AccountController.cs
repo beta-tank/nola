@@ -5,11 +5,11 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Data.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Nola.Core.Models.Users;
-using Nola.Service.Identity;
 using Nola.Service.Services;
 using Nola.ViewModels;
 

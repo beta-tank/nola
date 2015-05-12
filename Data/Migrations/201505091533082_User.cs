@@ -1,3 +1,5 @@
+using System.Data.Entity.Migrations;
+
 namespace Data.Migrations
 {     
     public partial class User : DbMigration

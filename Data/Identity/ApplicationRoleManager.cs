@@ -1,7 +1,10 @@
-﻿using Data;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin;
 using Nola.Core.Models.Users;
 
-namespace Nola.Service.Identity
+namespace Data.Identity
 {
     public class ApplicationRoleManager : RoleManager<ApplicationRole, int>
     {

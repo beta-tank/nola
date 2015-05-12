@@ -1,4 +1,5 @@
-﻿using Nola.Core.Models.Users;
+﻿using System.Data.Entity.ModelConfiguration;
+using Nola.Core.Models.Users;
 
 namespace Data.Configuration
 {
