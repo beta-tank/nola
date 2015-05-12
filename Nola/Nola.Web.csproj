@@ -445,9 +445,17 @@
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Data\Nola.Data.csproj">
+      <Project>{5408e597-b85f-46a7-ab44-fdd973f6985b}</Project>
+      <Name>Nola.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nola.Core\Nola.Core.csproj">
       <Project>{b512a9d2-bd35-46f6-a28a-d71fe60be41b}</Project>
       <Name>Nola.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nola.Service\Nola.Service.csproj">
+      <Project>{b7eace7f-2d87-4845-88f8-0434255bb1ad}</Project>
+      <Name>Nola.Service</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -128,9 +128,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Nola\Nola.csproj">
+    <ProjectReference Include="..\Nola\Nola.Web.csproj">
       <Project>{3920af03-1621-4d03-9fd0-f2c55e2e6dba}</Project>
-      <Name>Nola</Name>
+      <Name>Nola.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <Choose>
