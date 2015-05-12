@@ -1,13 +1,13 @@
 ﻿using System;
+using Data;
+using Data.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
-using Nola.Common;
-using Nola.DAL;
+using Nola.Core.Models.Users;
 using Owin;
-using Nola.Models;
 
 namespace Nola
 {
@@ -33,9 +33,16 @@ namespace Nola
                 {
                     OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser, int>(
                         validateInterval: TimeSpan.FromMinutes(30),
-                        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                        regenerateIdentityCallback: (manager, user) => manager.CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie),
                         getUserIdCallback: (id) => (id.GetUserId<int>()))
                 }
+                //Provider = new CookieAuthenticationProvider
+                //{
+                //    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, ApplicationUser, int>(
+                //        validateInterval: TimeSpan.FromMinutes(30),
+                //        regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
+                //        getUserIdCallback: (id) => (id.GetUserId<int>()))
+                //}
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 

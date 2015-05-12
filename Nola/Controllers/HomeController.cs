@@ -5,11 +5,10 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
-using Nola.Models;
 
 namespace Nola.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index()
         {
