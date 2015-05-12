@@ -1,14 +1,25 @@
-﻿@model Nola.ViewModels.RegisterViewModel
-@{
+﻿@{
     ViewBag.Title = "Регистрация";
 }
 
-<div class="row " style="margin-top: 100px">
-    @*<div class="col-md-6" >*@
-        @Html.ActionLink("Я ученик", "RegisterStudent", null, new { @class = "col-sm-6 col-md-6 col-lg-6 col-xs-12 btn btn-default" })
-        @Html.ActionLink("Я преподаватель", "RegisterTeacher", null, new { @class = "col-sm-6 col-md-6 col-lg-6 col-xs-12 btn btn-default" })
-    @*</div>*@
+<div class="container">
+    <div class="row ">
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+            @Html.ActionLink("Я ученик", "RegisterStudent", null, new
+            {
+                @class = "btn btn-block btn-default",
+            })
+        </div>
+        <div class="col-xs-12 visible-xs clearfix" style="height: 5px"></div>
+        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
+            @Html.ActionLink("Я преподаватель", "RegisterTeacher", null, new
+        {
+            @class = "btn btn-block btn-default",
+        })
+        </div>
+    </div>
 </div>
+
 
 
 
