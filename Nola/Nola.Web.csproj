@@ -374,6 +374,7 @@
     <Content Include="Content\_fonts.less" />
     <Content Include="AppSettings\AppSettingsSecrets.config" />
     <Content Include="Content\_customizeBootstrap.less" />
+    <Content Include="Content\_components.less" />
     <None Include="Properties\PublishProfiles\noladev.pubxml" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />

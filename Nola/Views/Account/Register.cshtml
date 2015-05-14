@@ -3,21 +3,21 @@
 }
 
 <div class="container">
-    <div class="row ">
-        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-            @Html.ActionLink("Я ученик", "RegisterStudent", null, new
+    @*<div class="row ">*@
+    <div class="register-block">
+        @Html.ActionLink("Я ученик", "RegisterStudent", null, new
             {
                 @class = "btn btn-block btn-default",
             })
-        </div>
-        <div class="col-xs-12 visible-xs clearfix" style="height: 5px"></div>
-        <div class="col-sm-6 col-md-6 col-lg-6 col-xs-12">
-            @Html.ActionLink("Я преподаватель", "RegisterTeacher", null, new
+    </div>
+    <div class="vertical-xs-space"></div>
+    <div class="register-block">
+        @Html.ActionLink("Я преподаватель", "RegisterTeacher", null, new
         {
             @class = "btn btn-block btn-default",
         })
-        </div>
     </div>
+    @*</div>*@
 </div>
 
 

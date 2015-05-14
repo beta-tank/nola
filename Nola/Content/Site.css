@@ -6343,7 +6343,8 @@ button.close {
 .visible-xs,
 .visible-sm,
 .visible-md,
-.visible-lg {
+.visible-lg,
+.vertical-xs-space {
   display: none !important;
 }
 .visible-xs-block,
@@ -6361,7 +6362,8 @@ button.close {
   display: none !important;
 }
 @media (max-width: 767px) {
-  .visible-xs {
+  .visible-xs,
+  .vertical-xs-space {
     display: block !important;
   }
   table.visible-xs {
@@ -6799,6 +6801,29 @@ a.list-group-item-danger.active:focus {
 }
 body {
   padding-top: 70px;
+}
+.vertical-xs-space {
+  position: relative;
+  float: left;
+  width: 100%;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+  height: 5px;
+}
+.register-block {
+  float: left;
+  width: 100%;
+  position: relative;
+  min-height: 1px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+@media (min-width: 768px) {
+  .register-block {
+    float: left;
+    width: 50%;
+  }
 }
 @font-face {
   font-family: 'Oswald';
