@@ -4,7 +4,7 @@ using Nola.Core.Models.Users;
 
 namespace Nola.Service.Services
 {
-    public interface IUserService
+    public interface IUserService : IService
     {
         ApplicationUser GetUser(int id);
         ApplicationUser GetUser(string id);
@@ -12,8 +12,6 @@ namespace Nola.Service.Services
         BaseUser GetProfile(string id); 
         void DeleteUser(ApplicationUser user);
 
-
-        void Commit();
 
     }
     public class UserService : IUserService

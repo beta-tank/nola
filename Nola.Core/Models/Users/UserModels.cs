@@ -9,8 +9,8 @@ namespace Nola.Core.Models.Users
         public virtual ApplicationUser ApplicationUser { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public ImageBase AvatarImage { get; set; }
-        public School School { get; set; }
+        //public virtual ImageBase AvatarImage { get; set; }
+        public virtual School School { get; set; }
     }
 
     public class StudentUser : BaseUser

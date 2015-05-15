@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web.Mvc;
 using FluentValidation;
 using FluentValidation.Attributes;
+using Nola.Service.Services;
 
 namespace Nola.ViewModels
 {
@@ -78,8 +82,15 @@ namespace Nola.ViewModels
         }
     }
 
+     [Validator(typeof(RegisterViewModelValidator))]
     public class RegisterViewModel
-    {
+     {
+        [Display(Name = "Имя")]
+        public string Name { get; set; }
+
+        [Display(Name = "Фамилия")]
+        public string Surname { get; set; }
+        
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -90,17 +101,57 @@ namespace Nola.ViewModels
         [DataType(DataType.Password)]
         [Display(Name = "Повторите пароль")]
         public string ConfirmPassword { get; set; }
-    }
+
+        [Display(Name = "Школа")]
+        public int? SchoolId { get; set; }
+
+        [Display(Name = "Часовой пояс")]
+        public int? TimeZoneId { get; set; }
+
+
+        public SelectList SchoolsList { get; set; }
+        public SelectList TimeZonesList { get; set; }
+
+        public RegisterViewModel()
+        {           
+            TimeZonesList = new SelectList(TimeZoneInfo.GetSystemTimeZones().Select(z => new { z.Id, z.DisplayName }), "Id", "DisplayName");
+        }
+
+        public void PopulateSchoolsList(ISchoolService service)
+        {
+            SchoolsList = new SelectList(service.GetAll(), "Id", "Name");
+        }
+
+     }
 
     public class RegisterViewModelValidator : AbstractValidator<RegisterViewModel>
     {
         public RegisterViewModelValidator()
         {
+            RuleFor(x => x.Name).NotEmpty().WithMessage("Должно быть указано {PropertyName}").Length(1, 40).WithMessage("{PropertyName} должено быть от {MinLength} до {MaxLength} символов");
+            RuleFor(x => x.Surname).NotEmpty().WithMessage("Должна быть указана {PropertyName}").Length(1, 40).WithMessage("{PropertyName} должена быть от {MinLength} до {MaxLength} символов");
             RuleFor(x => x.Email).EmailAddress().WithMessage("Введите корректный {PropertyName}");
-            RuleFor(x => x.Password).NotEmpty().WithMessage("{PropertyName} не должен быть пустым").Length(6, 30).WithMessage("{PropertyName} должен быть от {MinLength} до {MaxLength} символов");
+            RuleFor(x => x.Password).NotEmpty().WithMessage("Должен быть указан {PropertyName}").Length(6, 30).WithMessage("{PropertyName} должен быть от {MinLength} до {MaxLength} символов");
             RuleFor(x => x.ConfirmPassword).Equal(x => x.Password).WithMessage("Пароли не совпадают");
+            RuleFor(x => x.SchoolId).NotEmpty().WithMessage("Должна быть указана {PropertyName}");
+            RuleFor(x => x.TimeZoneId).NotEmpty().WithMessage("Должен быть указан {PropertyName}");
         }
     }
+
+     [Validator(typeof(RegisterStudentViewModelValidator))]
+    public class RegisterStudentViewModel : RegisterViewModel
+    {
+
+    }
+
+    public class RegisterStudentViewModelValidator : RegisterViewModelValidator
+    {
+        public RegisterStudentViewModelValidator()
+        {
+
+        }
+    }
+
 
     public class ResetPasswordViewModel
     {
@@ -117,7 +168,7 @@ namespace Nola.ViewModels
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
