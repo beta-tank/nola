@@ -21,16 +21,19 @@ namespace Nola.Controllers
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
         private IUserService userService;
+        private ISchoolService schoolService;
 
-        public AccountController(IUserService userService) : this(null, null, userService)
+        public AccountController(IUserService userService, ISchoolService schoolService)
+            : this(null, null, userService, schoolService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ISchoolService schoolService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             this.userService = userService;
+            this.schoolService = schoolService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -180,14 +183,25 @@ namespace Nola.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> RegisterStudent()
         {
-            return View();
+            var model = new RegisterStudentViewModel();
+            model.PopulateSchoolsList(schoolService);
+            return View(model);
         }
 
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> RegisterTeacher()
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterStudent(RegisterStudentViewModel model)
         {
-            return View();
+            model.PopulateSchoolsList(schoolService);
+            return View(model);
         }
+
+        //[AllowAnonymous]
+        //public async Task<ActionResult> RegisterTeacher()
+        //{
+        //    return View();
+        //}
 
         //
         // GET: /Account/ConfirmEmail

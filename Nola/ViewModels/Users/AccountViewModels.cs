@@ -107,15 +107,17 @@ namespace Nola.ViewModels
         public int SchoolId { get; set; }
 
         [Display(Name = "Часовой пояс")]
-        public int TimeZoneId { get; set; }
+        public string TimeZoneId { get; set; }
 
 
         public SelectList SchoolsList { get; set; }
         public SelectList TimeZonesList { get; set; }
+        public SelectList GradesList { get; set; }
 
         public RegisterViewModel()
         {           
             TimeZonesList = new SelectList(TimeZoneInfo.GetSystemTimeZones().Select(z => new { z.Id, z.DisplayName }), "Id", "DisplayName");
+            GradesList = new SelectList(Enumerable.Range(1, 12));
         }
 
         public void PopulateSchoolsList(ISchoolService service)
@@ -153,7 +155,7 @@ namespace Nola.ViewModels
     {
         public RegisterStudentViewModelValidator()
         {
-            RuleFor(x => x.TeachingType).NotEmpty().WithMessage("Должен быть указан {PropertyName}");
+            RuleFor(x => x.TeachingType).NotNull().WithMessage("Должен быть указан {PropertyName}"); //TODO: поменять на int, или поправить правило
             RuleFor(x => x.Grade).NotEmpty().WithMessage("Должен быть указан {PropertyName}").InclusiveBetween(1, 12).WithMessage("{PropertyName} должен быть между 1 и 12");
         }
     }

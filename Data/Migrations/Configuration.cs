@@ -3,6 +3,7 @@ using System.Linq;
 using Data.Identity;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Nola.Core.Models.Education;
 using Nola.Core.Models.Users;
 using ClaimTypes = Nola.Core.Models.Users.ClaimTypes;
 
@@ -20,8 +21,18 @@ namespace Data.Migrations
         {
             SeedClaims(context);
             SeedRoles(context);
+            SeedSchools(context);
             SeedUsers(context);
             context.Commit();
+        }
+
+        private static void SeedSchools(ApplicationDbContext context)
+        {
+            context.Schools.AddOrUpdate(s => s.Name, new[]
+            {
+                new School() {Name = "Озёрская СОШ"},
+                new School() {Name = "Новосибирская СОШ"}
+            });
         }
 
         private static void SeedClaims(ApplicationDbContext context)

@@ -219,13 +219,13 @@ namespace Nola.Test.ViewModelsTests
         [Test]
         public void TimeZoneId_Empty_HaveErrors()
         {
-            validator.ShouldHaveValidationErrorFor(model => model.TimeZoneId, 0);
+            validator.ShouldHaveValidationErrorFor(model => model.TimeZoneId, null as string);
         }
 
         [Test]
-        public void TimeZoneId_Int_NotHaveErrors()
+        public void TimeZoneId_String_NotHaveErrors()
         {
-            validator.ShouldNotHaveValidationErrorFor(model => model.TimeZoneId, 1);
+            validator.ShouldNotHaveValidationErrorFor(model => model.TimeZoneId, "tz");
         }
     }
 
