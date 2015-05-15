@@ -96,17 +96,12 @@ namespace Nola.Test.ViewModelsTests
     [TestFixture]
     public class RegisterViewModelValidatorTests
     {
-        private RegisterViewModelValidator validator;
-        private ISchoolService service;
+        private RegisterViewModelValidator<RegisterViewModel> validator;
 
         [SetUp]
         public void Setup()
         {
-            validator = new RegisterViewModelValidator();
-            var mock = new Mock<ISchoolService>();
-            mock.Setup(m => m.GetAll())
-                .Returns(new [] {new School(){Id = 1, Name = "School"}});
-            service = mock.Object;
+            validator = new RegisterViewModelValidator<RegisterViewModel>();
         }
 
         [Test]
@@ -212,7 +207,7 @@ namespace Nola.Test.ViewModelsTests
         [Test]
         public void SchioolId_Empty_HaveErrors()
         {
-            validator.ShouldHaveValidationErrorFor(model => model.SchoolId, null as int?);
+            validator.ShouldHaveValidationErrorFor(model => model.SchoolId, 0);
         }
 
         [Test]
@@ -224,13 +219,61 @@ namespace Nola.Test.ViewModelsTests
         [Test]
         public void TimeZoneId_Empty_HaveErrors()
         {
-            validator.ShouldHaveValidationErrorFor(model => model.TimeZoneId, null as int?);
+            validator.ShouldHaveValidationErrorFor(model => model.TimeZoneId, 0);
         }
 
         [Test]
         public void TimeZoneId_Int_NotHaveErrors()
         {
             validator.ShouldNotHaveValidationErrorFor(model => model.TimeZoneId, 1);
+        }
+    }
+
+    [TestFixture]
+    public class RegisterStudentViewModelValidatorTests
+    {
+        private RegisterStudentViewModelValidator validator;
+
+        [SetUp]
+        public void Setup()
+        {
+            validator = new RegisterStudentViewModelValidator();
+        }
+
+        [Test]
+        public void TeachingType_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor<RegisterStudentViewModel, TeachingType>(model => model.TeachingType, 0);
+        }
+
+        [Test]
+        public void TeachingType_Int_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.TeachingType, TeachingType.First);
+        }
+
+        [Test]
+        public void Grade_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, 0);
+        }
+
+        [Test]
+        public void Grade_LessOne_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, -1);
+        }
+
+        [Test]
+        public void Grade_GratherTwelve_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, 13);
+        }
+
+        [Test]
+        public void Grade_Valid_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Grade, 1);
         }
     }
 }

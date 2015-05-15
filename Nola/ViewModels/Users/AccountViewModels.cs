@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web.Mvc;
 using FluentValidation;
 using FluentValidation.Attributes;
+using Nola.Core.Models.Education;
 using Nola.Service.Services;
 
 namespace Nola.ViewModels
@@ -82,7 +83,7 @@ namespace Nola.ViewModels
         }
     }
 
-     [Validator(typeof(RegisterViewModelValidator))]
+     [Validator(typeof(RegisterViewModelValidator<RegisterViewModel>))]
     public class RegisterViewModel
      {
         [Display(Name = "Имя")]
@@ -103,10 +104,10 @@ namespace Nola.ViewModels
         public string ConfirmPassword { get; set; }
 
         [Display(Name = "Школа")]
-        public int? SchoolId { get; set; }
+        public int SchoolId { get; set; }
 
         [Display(Name = "Часовой пояс")]
-        public int? TimeZoneId { get; set; }
+        public int TimeZoneId { get; set; }
 
 
         public SelectList SchoolsList { get; set; }
@@ -124,7 +125,7 @@ namespace Nola.ViewModels
 
      }
 
-    public class RegisterViewModelValidator : AbstractValidator<RegisterViewModel>
+    public class RegisterViewModelValidator<T> : AbstractValidator<T>  where T : RegisterViewModel
     {
         public RegisterViewModelValidator()
         {
@@ -138,17 +139,22 @@ namespace Nola.ViewModels
         }
     }
 
-     [Validator(typeof(RegisterStudentViewModelValidator))]
+    [Validator(typeof (RegisterStudentViewModelValidator))]
     public class RegisterStudentViewModel : RegisterViewModel
     {
+        [Display(Name = "Вид")]
+        public TeachingType TeachingType { get; set; }
 
+        [Display(Name = "Класс")]
+        public int Grade { get; set; }
     }
 
-    public class RegisterStudentViewModelValidator : RegisterViewModelValidator
+    public class RegisterStudentViewModelValidator : RegisterViewModelValidator<RegisterStudentViewModel>
     {
         public RegisterStudentViewModelValidator()
         {
-
+            RuleFor(x => x.TeachingType).NotEmpty().WithMessage("Должен быть указан {PropertyName}");
+            RuleFor(x => x.Grade).NotEmpty().WithMessage("Должен быть указан {PropertyName}").InclusiveBetween(1, 12).WithMessage("{PropertyName} должен быть между 1 и 12");
         }
     }
 
