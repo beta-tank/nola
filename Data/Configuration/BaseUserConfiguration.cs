@@ -13,6 +13,7 @@ namespace Data.Configuration
             HasRequired(r => r.ApplicationUser).WithOptional(u => u.UserProfile);//.WithRequiredPrincipal();
             Property(r => r.Name).HasMaxLength(40);
             Property(r => r.Surname).HasMaxLength(40);
+            Ignore(r => r.TimeZoneInfo);
             ToTable("BaseUsers");
         }
     }

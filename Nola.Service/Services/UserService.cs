@@ -9,7 +9,8 @@ namespace Nola.Service.Services
         ApplicationUser GetUser(int id);
         ApplicationUser GetUser(string id);
         BaseUser GetProfile(int id);
-        BaseUser GetProfile(string id); 
+        BaseUser GetProfile(string id);
+        void AddProfile(BaseUser profile);
         void DeleteUser(ApplicationUser user);
 
 
@@ -46,6 +47,11 @@ namespace Nola.Service.Services
         {
             int idInt = 0;
             return int.TryParse(id, out idInt) ? profileRepository.GetById(idInt) : null;
+        }
+
+        public void AddProfile(BaseUser profile)
+        {
+            profileRepository.Add(profile);
         }
 
         public ApplicationUser GetUser(string id)
