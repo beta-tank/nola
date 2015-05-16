@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Nola.Core.Mappings;
+using Nola.Mappings;
 
 namespace Nola
 {
@@ -13,7 +14,11 @@ namespace Nola
 
         public static void Configure()
         {
-            Mapper.Initialize(m => m.AddProfile<DomainToModelsMappings>());
+            Mapper.Initialize(m =>
+            {
+                m.AddProfile<DomainToModelsMappings>();
+                m.AddProfile<ViewModelsToDomainMappings>();
+            });
         } 
     }
 }
