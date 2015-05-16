@@ -94,16 +94,16 @@ namespace Data.Identity
         {
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
+        public override async Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            var userIdentity = base.CreateUserIdentityAsync(user);
+            var userIdentity = await base.CreateUserIdentityAsync(user);
             //var userIdentity = ((ApplicationUserManager)UserManager).CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                 // Add custom user claims here
             var roles = ((ApplicationUserManager) UserManager).GetRoles(user.Id);
-            userIdentity.Result.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
             foreach (var role in roles)
             {
-                userIdentity.Result.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));
+                userIdentity.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));
             }
             return userIdentity;
         }
