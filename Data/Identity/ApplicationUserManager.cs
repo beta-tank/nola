@@ -44,7 +44,7 @@ namespace Data.Identity
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
             {
-                AllowOnlyAlphanumericUserNames = true,
+                AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
@@ -101,6 +101,8 @@ namespace Data.Identity
                 // Add custom user claims here
             var roles = ((ApplicationUserManager) UserManager).GetRoles(user.Id);
             userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.GivenName, user.UserProfile.Name));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Surname, user.UserProfile.Surname));
             foreach (var role in roles)
             {
                 userIdentity.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));

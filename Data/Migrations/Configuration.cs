@@ -21,12 +21,12 @@ namespace Data.Migrations
 
         protected override void Seed(ApplicationDbContext context)
         {
-            SeedClaims(context);
-            context.Commit();
-            SeedRoles(context);
-            context.Commit();
+            context.Configuration.LazyLoadingEnabled = true;
             SeedSchools(context);
             context.Commit();
+            SeedClaims(context);
+            context.Commit();
+            SeedRoles(context);           
             SeedUsers(context);
             context.Commit();
         }
@@ -80,11 +80,15 @@ namespace Data.Migrations
         {
             var store = new ApplicationUserStore(context);
             var manager = new ApplicationUserManager(store);
-            if (!context.Users.Any(u => u.UserName == "qw@qw.qw"))
+            if (!context.Users.Any(u => u.Email == "qw@qw.qw"))
             {
-                var user = new ApplicationUser { UserName = "qw@qw.qw", Email = "qw@qw.qw" };
-                manager.Create(user, "qwQW12");
-                manager.AddToRole(user.Id, "student");
+                var user = new ApplicationUser { UserName = "qw@qw.qw", Email = "qw@qw.qw" };              
+                var result = manager.Create(user, "qwQW12");
+                if(!result.Succeeded)
+                    throw new InvalidOperationException(result.Errors.First());
+                result = manager.AddToRole(user.Id, "student");
+                if (!result.Succeeded)
+                    throw new InvalidOperationException(result.Errors.First());
                 var profile = new StudentUser()
                 {
                     Id = user.Id,
@@ -97,6 +101,7 @@ namespace Data.Migrations
                     School = context.Schools.First()                    
 
                 };
+                context.BaseUsers.Add(profile);
             }
         }
 
