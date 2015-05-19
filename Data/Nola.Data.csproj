@@ -89,9 +89,9 @@
     <Compile Include="Identity\ApplicationUserStore.cs" />
     <Compile Include="Identity\EmailService.cs" />
     <Compile Include="Identity\SmsService.cs" />
-    <Compile Include="Migrations\201505161718208_user.cs" />
-    <Compile Include="Migrations\201505161718208_user.Designer.cs">
-      <DependentUpon>201505161718208_user.cs</DependentUpon>
+    <Compile Include="Migrations\201505190824061_dev.cs" />
+    <Compile Include="Migrations\201505190824061_dev.Designer.cs">
+      <DependentUpon>201505190824061_dev.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -115,8 +115,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201505161718208_user.resx">
-      <DependentUpon>201505161718208_user.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201505190824061_dev.resx">
+      <DependentUpon>201505190824061_dev.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

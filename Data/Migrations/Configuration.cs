@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using Data.Identity;
@@ -20,8 +22,11 @@ namespace Data.Migrations
         protected override void Seed(ApplicationDbContext context)
         {
             SeedClaims(context);
+            context.Commit();
             SeedRoles(context);
+            context.Commit();
             SeedSchools(context);
+            context.Commit();
             SeedUsers(context);
             context.Commit();
         }
@@ -37,28 +42,36 @@ namespace Data.Migrations
 
         private static void SeedClaims(ApplicationDbContext context)
         {
-            context.Claims.AddOrUpdate(new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.AddTest });
+            context.Claims.AddOrUpdate(new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.AddTest }, 
+                new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.DoTest }, 
+                new ApplicationClaim() { Type = ClaimTypes.Permission, Value = ClaimPermissionTypes.PartisipateInOlimpiad }
+                );
         }
 
         private static void SeedRoles(ApplicationDbContext context)
         {
-            var claims = Enumerable.ToList<ApplicationClaim>(context.Claims);
+            var claims = context.Claims.ToList();
             var store = new RoleStore<ApplicationRole, int, ApplicationUserRole>(context);
             var manager = new ApplicationRoleManager(store);
             ApplicationRole role;
-            if (!Queryable.Any<ApplicationRole>(context.Roles, r => r.Name == "admin"))
+            if (!context.Roles.Any(r => r.Name == "admin"))
             {
                 role = new ApplicationRole() { Name = "admin", DisplayName = "Администратор", Claims = claims };
                 manager.Create(role);
             }
-            if (!Queryable.Any<ApplicationRole>(context.Roles, r => r.Name == "student"))
+            if (!context.Roles.Any(r => r.Name == "student"))
             {
-                role = new ApplicationRole() { Name = "student", DisplayName = "Ученик" };
+                role = new ApplicationRole() { Name = "student", DisplayName = "Ученик", Claims = new List<ApplicationClaim>()};
+                role.Claims.Add(context.Claims.First(c => c.Type == ClaimTypes.Permission && c.Value == ClaimPermissionTypes.DoTest));
+                role.Claims.Add(context.Claims.First(c => c.Type == ClaimTypes.Permission && c.Value == ClaimPermissionTypes.PartisipateInOlimpiad));
                 manager.Create(role);
             }
-            if (!Queryable.Any<ApplicationRole>(context.Roles, r => r.Name == "teacher"))
+            if (!context.Roles.Any(r => r.Name == "teacher"))
             {
-                role = new ApplicationRole() { Name = "teacher", DisplayName = "Преподаватель" };
+                role = new ApplicationRole() { Name = "teacher", DisplayName = "Преподаватель", Claims = new List<ApplicationClaim>() };
+                role.Claims.Add(context.Claims.First(c => c.Type == ClaimTypes.Permission && c.Value == ClaimPermissionTypes.DoTest));
+                role.Claims.Add(context.Claims.First(c => c.Type == ClaimTypes.Permission && c.Value == ClaimPermissionTypes.PartisipateInOlimpiad));
+                role.Claims.Add(context.Claims.First(c => c.Type == ClaimTypes.Permission && c.Value == ClaimPermissionTypes.AddTest));
                 manager.Create(role);
             }
         }
@@ -67,12 +80,23 @@ namespace Data.Migrations
         {
             var store = new ApplicationUserStore(context);
             var manager = new ApplicationUserManager(store);
-            ApplicationUser user;
-            if (!Queryable.Any<ApplicationUser>(context.Users, u => u.UserName == "qw@qw.qw"))
+            if (!context.Users.Any(u => u.UserName == "qw@qw.qw"))
             {
-                user = new ApplicationUser { UserName = "qw@qw.qw", Email = "qw@qw.qw" };
+                var user = new ApplicationUser { UserName = "qw@qw.qw", Email = "qw@qw.qw" };
                 manager.Create(user, "qwQW12");
-                manager.AddToRole(user.Id, "admin");
+                manager.AddToRole(user.Id, "student");
+                var profile = new StudentUser()
+                {
+                    Id = user.Id,
+                    TeachingType = TeachingType.Second,
+                    ApplicationUser = user,
+                    TimeZoneInfoId = TimeZoneInfo.Local.Id,
+                    Grade = 4,
+                    Name = "Вася",
+                    Surname = "Пупкин",
+                    School = context.Schools.First()                    
+
+                };
             }
         }
 
