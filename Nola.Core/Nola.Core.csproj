@@ -67,7 +67,13 @@
     <Compile Include="Models\Education\School.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
+    <Compile Include="Models\Users\ApplicationClaim.cs" />
+    <Compile Include="Models\Users\ApplicationClaimsPrincipal.cs" />
+    <Compile Include="Models\Users\ApplicationRole.cs" />
     <Compile Include="Models\Users\ApplicationUser.cs" />
+    <Compile Include="Models\Users\ApplicationUserClaim.cs" />
+    <Compile Include="Models\Users\ApplicationUserLogin.cs" />
+    <Compile Include="Models\Users\ApplicationUserRole.cs" />
     <Compile Include="Models\Users\ClaimTypes.cs" />
     <Compile Include="Models\Users\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
