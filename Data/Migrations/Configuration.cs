@@ -23,6 +23,7 @@ namespace Data.Migrations
         {
             context.Configuration.LazyLoadingEnabled = true;
             SeedSchools(context);
+            SeedSubjects(context);
             context.Commit();
             SeedClaims(context);
             context.Commit();
@@ -31,13 +32,19 @@ namespace Data.Migrations
             context.Commit();
         }
 
+        private void SeedSubjects(ApplicationDbContext context)
+        {
+            context.Subjects.AddOrUpdate(s => s.Name,
+                new Subject() { Name = "Математика" },
+                new Subject() { Name = "Русский язык" },
+                new Subject() { Name = "Физика" });
+        }
+
         private static void SeedSchools(ApplicationDbContext context)
         {
-            context.Schools.AddOrUpdate(s => s.Name, new[]
-            {
-                new School() {Name = "Озёрская СОШ"},
-                new School() {Name = "Новосибирская СОШ"}
-            });
+            context.Schools.AddOrUpdate(s => s.Name, 
+                new School() {Name = "Озёрская СОШ"}, 
+                new School() {Name = "Новосибирская СОШ"});
         }
 
         private static void SeedClaims(ApplicationDbContext context)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
 
@@ -32,5 +33,6 @@ namespace Nola.Core.Models.Users
     public class TeacherUser : BaseUser
     {
         public bool IsConfirmed { get; set; }
+        public virtual ICollection<Subject> Subjects { get; set; }
     }
 }

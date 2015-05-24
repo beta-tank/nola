@@ -14,6 +14,7 @@ namespace Nola.Core.Data
         DbSet<ApplicationClaim> Claims { get; set; }
         DbSet<BaseUser> BaseUsers { get; set; }
         DbSet<School> Schools { get; set; }
+        DbSet<Subject> Subjects { get; set; }
         DbSet<ImageBase> Images { get; set; }
 
 

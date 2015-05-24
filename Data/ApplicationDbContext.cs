@@ -29,6 +29,7 @@ namespace Data
         public DbSet<ApplicationClaim> Claims { get; set; }
         public DbSet<BaseUser> BaseUsers { get; set; }
         public DbSet<School> Schools { get; set; }
+        public DbSet<Subject> Subjects { get; set; }
         public DbSet<ImageBase> Images { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
