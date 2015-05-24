@@ -1,21 +1,17 @@
-using AutoMapper;
-using Ninject.Planning.Bindings;
+using System;
+using System.Web;
+using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+using Ninject;
+using Ninject.Web.Common;
 using Ninject.Extensions.Conventions;
 using Ninject.Modules;
-using Nola.Core.Data;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Nola.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Nola.App_Start.NinjectWebCommon), "Stop")]
 
 namespace Nola.App_Start
 {
-    using System;
-    using System.Web;
-
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Web.Common;
+    
 
     public static class NinjectWebCommon 
     {
