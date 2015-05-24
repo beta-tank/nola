@@ -87,16 +87,17 @@ namespace Data.Migrations
         {
             var store = new ApplicationUserStore(context);
             var manager = new ApplicationUserManager(store);
-            if (!context.Users.Any(u => u.Email == "qw@qw.qw"))
+            // Seed student
+            if (!context.Users.Any(u => u.Email == "student@q.q"))
             {
-                var user = new ApplicationUser { UserName = "qw@qw.qw", Email = "qw@qw.qw" };              
+                var user = new ApplicationUser { UserName = "student@q.q", Email = "student@q.q" };              
                 var result = manager.Create(user, "qwQW12");
                 if(!result.Succeeded)
                     throw new InvalidOperationException(result.Errors.First());
                 result = manager.AddToRole(user.Id, "student");
                 if (!result.Succeeded)
                     throw new InvalidOperationException(result.Errors.First());
-                var profile = new StudentUser()
+                var student = new StudentUser()
                 {
                     Id = user.Id,
                     TeachingType = TeachingType.Second,
@@ -108,7 +109,30 @@ namespace Data.Migrations
                     School = context.Schools.First()                    
 
                 };
-                context.BaseUsers.Add(profile);
+                context.BaseUsers.Add(student);
+            }
+
+            // Seed teacher
+            if (!context.Users.Any(u => u.Email == "teacher@q.q"))
+            {
+                var user = new ApplicationUser { UserName = "teacher@q.q", Email = "teacher@q.q" };
+                var result = manager.Create(user, "qwQW12");
+                if (!result.Succeeded)
+                    throw new InvalidOperationException(result.Errors.First());
+                result = manager.AddToRole(user.Id, "teacher");
+                if (!result.Succeeded)
+                    throw new InvalidOperationException(result.Errors.First());
+                var teacher = new TeacherUser()
+                {
+                    Id = user.Id,
+                    ApplicationUser = user,
+                    TimeZoneInfoId = TimeZoneInfo.Local.Id,
+                    Name = "Андрей",
+                    Surname = "Скорый",
+                    School = context.Schools.First(),
+                    Subjects = context.Subjects.Take(2).ToList()
+                };
+                context.BaseUsers.Add(teacher);
             }
         }
 
