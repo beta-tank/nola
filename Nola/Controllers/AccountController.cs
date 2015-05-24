@@ -245,15 +245,15 @@ namespace Nola.Controllers
             {
                 var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
                 user.EmailConfirmed = true; //TODO: remove auto e-mail confirmation
-                //var result = await UserManager.CreateAsync(user, model.Password);
-                if (true)
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
                 {
-                    //await UserManager.AddToRoleAsync(user.Id, "student");
+                    await UserManager.AddToRoleAsync(user.Id, "teacher");
                     var profile = Mapper.Map<TeacherUser>(model);
                     profile.Id = user.Id;
-                    //userService.AddProfile(profile);
-                    //userService.Commit();
-                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    userService.AddProfile(profile);
+                    userService.Commit();
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -263,7 +263,7 @@ namespace Nola.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
-                //AddErrors(result);
+                AddErrors(result);
             }
             model.PopulateSchoolsList(schoolService);
             model.PopulateSubjectsList(subjectService);
