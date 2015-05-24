@@ -160,6 +160,29 @@ namespace Nola.ViewModels
         }
     }
 
+    [Validator(typeof(RegisterTeacherViewModelValidator))]
+    public class RegisterTeacherViewModel : RegisterViewModel
+    {
+        [Display(Name = "Преподаваемые предметы")]
+        public ICollection<int> SubjectIds { get; set; }
+
+        public SelectList SubjectsList { get; set; }
+
+        public void PopulateSubjectsList(ISubjectService service)
+        {
+            SubjectsList = new SelectList(service.GetAll(), "Id", "Name");
+        }
+
+    }
+
+    public class RegisterTeacherViewModelValidator : RegisterViewModelValidator<RegisterTeacherViewModel>
+    {
+        public RegisterTeacherViewModelValidator()
+        {
+
+        }
+    }
+
 
     public class ResetPasswordViewModel
     {
