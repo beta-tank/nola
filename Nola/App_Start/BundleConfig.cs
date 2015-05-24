@@ -29,9 +29,6 @@ namespace Nola
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/PagedList.css"));
-
-            bundles.Add(new StyleBundle("~/bundles/chosencss").Include(
-                       "~/Content/chosen.css"));
         }
     }
 }
