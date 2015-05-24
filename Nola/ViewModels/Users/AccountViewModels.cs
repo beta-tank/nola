@@ -155,7 +155,7 @@ namespace Nola.ViewModels
     {
         public RegisterStudentViewModelValidator()
         {
-            RuleFor(x => x.TeachingType).NotNull().WithMessage("Должен быть указан {PropertyName}"); //TODO: поменять на int, или поправить правило
+            RuleFor(x => x.TeachingType).NotEmpty().WithMessage("Должен быть указан {PropertyName}"); //TODO: поменять на int, или поправить правило
             RuleFor(x => x.Grade).NotEmpty().WithMessage("Должен быть указан {PropertyName}").InclusiveBetween(1, 12).WithMessage("{PropertyName} должен быть между 1 и 12");
         }
     }
