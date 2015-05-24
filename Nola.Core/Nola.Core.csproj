@@ -53,6 +53,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
@@ -62,11 +63,18 @@
     <Compile Include="Data\Page.cs" />
     <Compile Include="Mappings\DomainToModelsMappings.cs" />
     <Compile Include="Models\Common\PagedList.cs" />
-    <Compile Include="Models\Education\Enums.cs" />
+    <Compile Include="Models\Education\Subject.cs" />
+    <Compile Include="Models\Education\TeachingTypes.cs" />
     <Compile Include="Models\Education\School.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
+    <Compile Include="Models\Users\ApplicationClaim.cs" />
+    <Compile Include="Models\Users\ApplicationClaimsPrincipal.cs" />
+    <Compile Include="Models\Users\ApplicationRole.cs" />
     <Compile Include="Models\Users\ApplicationUser.cs" />
+    <Compile Include="Models\Users\ApplicationUserClaim.cs" />
+    <Compile Include="Models\Users\ApplicationUserLogin.cs" />
+    <Compile Include="Models\Users\ApplicationUserRole.cs" />
     <Compile Include="Models\Users\ClaimTypes.cs" />
     <Compile Include="Models\Users\UserModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

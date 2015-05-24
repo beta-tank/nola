@@ -1,8 +1,9 @@
-using System.Data.Entity.Migrations;
-
 namespace Data.Migrations
-{     
-    public partial class User : DbMigration
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class dev : DbMigration
     {
         public override void Up()
         {
@@ -11,17 +12,15 @@ namespace Data.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false),
-                        Name = c.String(),
-                        Surname = c.String(),
-                        AvatarImage_Id = c.Int(),
+                        Name = c.String(maxLength: 40),
+                        Surname = c.String(maxLength: 40),
+                        TimeZoneInfoId = c.String(),
                         School_Id = c.Int(),
                     })
                 .PrimaryKey(t => t.Id)
                 .ForeignKey("dbo.ApplicationUsers", t => t.Id)
-                .ForeignKey("dbo.Images", t => t.AvatarImage_Id)
                 .ForeignKey("dbo.Schools", t => t.School_Id)
                 .Index(t => t.Id)
-                .Index(t => t.AvatarImage_Id)
                 .Index(t => t.School_Id);
             
             CreateTable(
@@ -87,16 +86,6 @@ namespace Data.Migrations
                 .Index(t => t.ApplicationRole_Id);
             
             CreateTable(
-                "dbo.Images",
-                c => new
-                    {
-                        Id = c.Int(nullable: false, identity: true),
-                        Link = c.String(),
-                        Description = c.String(),
-                    })
-                .PrimaryKey(t => t.Id);
-            
-            CreateTable(
                 "dbo.Schools",
                 c => new
                     {
@@ -122,6 +111,16 @@ namespace Data.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         DisplayName = c.String(),
                         Name = c.String(),
+                    })
+                .PrimaryKey(t => t.Id);
+            
+            CreateTable(
+                "dbo.Images",
+                c => new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Link = c.String(),
+                        Description = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -196,7 +195,6 @@ namespace Data.Migrations
             DropForeignKey("dbo.ApplicationClaimApplicationRoles", "ApplicationClaim_Id", "dbo.ApplicationClaims");
             DropForeignKey("dbo.AspNetUserRoles", "ApplicationRole_Id", "dbo.ApplicationRoles");
             DropForeignKey("dbo.BaseUsers", "School_Id", "dbo.Schools");
-            DropForeignKey("dbo.BaseUsers", "AvatarImage_Id", "dbo.Images");
             DropForeignKey("dbo.BaseUsers", "Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.AspNetUserRoles", "ApplicationUser_Id", "dbo.ApplicationUsers");
             DropForeignKey("dbo.AspNetUserLogins", "ApplicationUser_Id", "dbo.ApplicationUsers");
@@ -212,17 +210,16 @@ namespace Data.Migrations
             DropIndex("dbo.AspNetUserLogins", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.AspNetUserClaims", new[] { "ApplicationUser_Id" });
             DropIndex("dbo.BaseUsers", new[] { "School_Id" });
-            DropIndex("dbo.BaseUsers", new[] { "AvatarImage_Id" });
             DropIndex("dbo.BaseUsers", new[] { "Id" });
             DropTable("dbo.ImageRemotes");
             DropTable("dbo.ImageLocals");
             DropTable("dbo.TeacherUsers");
             DropTable("dbo.StudentUsers");
             DropTable("dbo.ApplicationClaimApplicationRoles");
+            DropTable("dbo.Images");
             DropTable("dbo.ApplicationRoles");
             DropTable("dbo.ApplicationClaims");
             DropTable("dbo.Schools");
-            DropTable("dbo.Images");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");

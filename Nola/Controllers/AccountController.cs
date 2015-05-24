@@ -5,7 +5,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 using Data.Identity;
+using Data.Repository;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -20,17 +22,22 @@ namespace Nola.Controllers
     {
         private ApplicationSignInManager signInManager;
         private ApplicationUserManager userManager;
-        private IUserService userService;
+        private readonly IUserService userService;
+        private readonly ISchoolService schoolService;
+        private readonly ISubjectService subjectService;
 
-        public AccountController(IUserService userService) : this(null, null, userService)
+        public AccountController(IUserService userService, ISchoolService schoolService, ISubjectService subjectService)
+            : this(null, null, userService, schoolService, subjectService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ISchoolService schoolService, ISubjectService subjectService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             this.userService = userService;
+            this.schoolService = schoolService;
+            this.subjectService = subjectService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -87,7 +94,7 @@ namespace Nola.Controllers
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
-                case SignInStatus.RequiresVerification:
+                case SignInStatus.RequiresVerification: // TODO: проверить отправку кода
                     return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
                 case SignInStatus.Failure:
                 default:
@@ -149,19 +156,105 @@ namespace Nola.Controllers
 
         //
         // POST: /Account/Register
+        //[HttpPost]
+        //[AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> Register(RegisterViewModel model)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+        //        var result = await UserManager.CreateAsync(user, model.Password);
+        //        if (result.Succeeded)
+        //        {
+        //            await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
+        //            // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+        //            // Send an email with this link
+        //            // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+        //            // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+        //            // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+        //            return RedirectToAction("Index", "Home");
+        //        }
+        //        AddErrors(result);
+        //    }
+
+        //    // If we got this far, something failed, redisplay form
+        //    return View(model);
+        //}
+
+        [AllowAnonymous]
+        public ActionResult RegisterStudent()
+        {
+            var model = new RegisterStudentViewModel();
+            model.PopulateSchoolsList(schoolService);
+            return View(model);
+        }
+
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> RegisterStudent(RegisterStudentViewModel model)
         {
+            //model.PopulateSchoolsList(schoolService);
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                user.EmailConfirmed = true; //TODO: remove auto e-mail confirmation
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "student");
+                    var profile = Mapper.Map<StudentUser>(model);
+                    profile.Id = user.Id;
+                    userService.AddProfile(profile);
+                    userService.Commit();
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                AddErrors(result);           
+            }
+            model.PopulateSchoolsList(schoolService);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterTeacher()
+        {
+            var model = new RegisterTeacherViewModel();
+            model.PopulateSchoolsList(schoolService);
+            model.PopulateSubjectsList(subjectService);
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterTeacher(RegisterTeacherViewModel model)
+        {
+            //model.PopulateSchoolsList(schoolService);
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                user.EmailConfirmed = true; //TODO: remove auto e-mail confirmation
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await UserManager.AddToRoleAsync(user.Id, "teacher");
+                    var profile = Mapper.Map<TeacherUser>(model);
+                    profile.Id = user.Id;
+                    userService.AddProfile(profile);
+                    userService.Commit();
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -172,10 +265,16 @@ namespace Nola.Controllers
                 }
                 AddErrors(result);
             }
-
-            // If we got this far, something failed, redisplay form
+            model.PopulateSchoolsList(schoolService);
+            model.PopulateSubjectsList(subjectService);
             return View(model);
         }
+
+        //[AllowAnonymous]
+        //public async Task<ActionResult> RegisterTeacher()
+        //{
+        //    return View();
+        //}
 
         //
         // GET: /Account/ConfirmEmail

@@ -101,6 +101,10 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
       <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
       <Private>True</Private>
@@ -128,6 +132,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Nola.Core\Nola.Core.csproj">
+      <Project>{B512A9D2-BD35-46F6-A28A-D71FE60BE41B}</Project>
+      <Name>Nola.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Nola.Service\Nola.Service.csproj">
+      <Project>{B7EACE7F-2D87-4845-88F8-0434255BB1AD}</Project>
+      <Name>Nola.Service</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Nola\Nola.Web.csproj">
       <Project>{3920af03-1621-4d03-9fd0-f2c55e2e6dba}</Project>
       <Name>Nola.Web</Name>

@@ -44,7 +44,7 @@ namespace Data.Identity
             // Configure validation logic for usernames
             manager.UserValidator = new UserValidator<ApplicationUser, int>(manager)
             {
-                AllowOnlyAlphanumericUserNames = true,
+                AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
             };
 
@@ -94,16 +94,18 @@ namespace Data.Identity
         {
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
+        public override async Task<ClaimsIdentity> CreateUserIdentityAsync(ApplicationUser user)
         {
-            var userIdentity = base.CreateUserIdentityAsync(user);
+            var userIdentity = await base.CreateUserIdentityAsync(user);
             //var userIdentity = ((ApplicationUserManager)UserManager).CreateIdentityAsync(user, DefaultAuthenticationTypes.ApplicationCookie);
                 // Add custom user claims here
             var roles = ((ApplicationUserManager) UserManager).GetRoles(user.Id);
-            userIdentity.Result.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Sid, user.Id.ToString()));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.GivenName, user.UserProfile.Name));
+            userIdentity.AddClaim(new Claim(System.Security.Claims.ClaimTypes.Surname, user.UserProfile.Surname));
             foreach (var role in roles)
             {
-                userIdentity.Result.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));
+                userIdentity.AddClaims(Mapper.Map<ICollection<ApplicationClaim>, ICollection<Claim>>(((ApplicationUserManager)UserManager).RoleManager.FindByName(role).Claims));
             }
             return userIdentity;
         }

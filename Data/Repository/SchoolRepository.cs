@@ -5,7 +5,7 @@ namespace Data.Repository
 {
     public class SchoolRepository : RepositoryBase<School>, ISchoolRepository
     {
-        protected SchoolRepository(IApplicationDbContext context)
+        public SchoolRepository(IApplicationDbContext context)
             : base(context)
         {
         }

@@ -1,0 +1,13 @@
+﻿@import "bootstrap/mixins/grid.less";
+
+.vertical-xs-space {
+   &:extend(.visible-xs);
+   .make-xs-column(12);
+   height: 5px;
+}
+
+
+.register-block {
+  .make-xs-column(12);
+  .make-sm-column(6);
+}

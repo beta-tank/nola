@@ -11,8 +11,9 @@ namespace Data.Configuration
             HasKey(r => r.Id);
             Property(r => r.Id).HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
             HasRequired(r => r.ApplicationUser).WithOptional(u => u.UserProfile);//.WithRequiredPrincipal();
-            //HasRequired(r => r.ApplicationUser).WithOptional(r => r.Id);
-            //HasOptional(r => r.ApplicationUserUser);//.Map(m => m.MapKey("ModifiedBy"));
+            Property(r => r.Name).HasMaxLength(40);
+            Property(r => r.Surname).HasMaxLength(40);
+            Ignore(r => r.TimeZoneInfo);
             ToTable("BaseUsers");
         }
     }

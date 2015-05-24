@@ -1,6 +1,8 @@
 using AutoMapper;
 using Ninject.Planning.Bindings;
 using Ninject.Extensions.Conventions;
+using Ninject.Modules;
+using Nola.Core.Data;
 
 [assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Nola.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Nola.App_Start.NinjectWebCommon), "Stop")]
@@ -18,6 +20,10 @@ namespace Nola.App_Start
     public static class NinjectWebCommon 
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+
+        public static IKernel Kernel {
+            get { return bootstrapper.Kernel; }
+        }
 
         /// <summary>
         /// Starts the application
@@ -43,7 +49,7 @@ namespace Nola.App_Start
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            var kernel = new StandardKernel(new ServiceModule());
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -65,14 +71,34 @@ namespace Nola.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind(o =>
-            {
-                o.FromThisAssembly() // Scans currently assembly
-                .SelectAllClasses() // Retrieve all non-abstract classes
-                .BindDefaultInterface() // Binds the default interface to them;
-                .Configure(b => b.InRequestScope());
+            //kernel.Bind(o =>
+            //{
+            //    //o.FromThisAssembly() // Scans currently assembly
+            //    //.SelectAllClasses() // Retrieve all non-abstract classes
+            //    //.BindDefaultInterface() // Binds the default interface to them;
+            //    //.Configure(b => b.InRequestScope());
 
-                o.FromAssembliesMatching("Nola.Core.dll") // Scans currently assembly
+            //    o.FromAssembliesMatching("Nola.*.dll") // Select assembly
+            //    .SelectAllClasses() // Retrieve all non-abstract classes
+            //    .BindDefaultInterface() // Binds the default interface to them;
+            //    .Configure(b => b.InRequestScope());
+            //});
+        }
+    }
+
+    public class ServiceModule : NinjectModule
+    {
+        public override void Load()
+        {
+            //Kernel.Rebind<IMappingEngine>().ToMethod(context => Mapper.Engine);
+            Kernel.Bind(o =>
+            {
+                //o.FromThisAssembly() // Scans currently assembly
+                //.SelectAllClasses() // Retrieve all non-abstract classes
+                //.BindDefaultInterface() // Binds the default interface to them;
+                //.Configure(b => b.InRequestScope());
+
+                o.FromAssembliesMatching("Nola.*.dll") // Select assembly
                 .SelectAllClasses() // Retrieve all non-abstract classes
                 .BindDefaultInterface() // Binds the default interface to them;
                 .Configure(b => b.InRequestScope());

@@ -1,5 +1,9 @@
 ﻿using System;
+using System.Web.Mvc;
 using FluentValidation.TestHelper;
+using Moq;
+using Nola.Core.Models.Education;
+using Nola.Service.Services;
 using Nola.ViewModels;
 using NUnit.Framework;
 
@@ -92,12 +96,60 @@ namespace Nola.Test.ViewModelsTests
     [TestFixture]
     public class RegisterViewModelValidatorTests
     {
-        private RegisterViewModelValidator validator;
+        private RegisterViewModelValidator<RegisterViewModel> validator;
 
         [SetUp]
         public void Setup()
         {
-            validator = new RegisterViewModelValidator();
+            validator = new RegisterViewModelValidator<RegisterViewModel>();
+        }
+
+        [Test]
+        public void Name_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Name, null as string);
+        }
+
+        [Test]
+        public void Name_ShortLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Name, "");
+        }
+
+        [Test]
+        public void Name_LongLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Name, "12345123451234512345123451234512345123451");
+        }
+
+        [Test]
+        public void Name_NormalLength_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Password, "abcdefgh");
+        }
+
+        [Test]
+        public void Surname_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Surname, null as string);
+        }
+
+        [Test]
+        public void Surname_ShortLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Surname, "");
+        }
+
+        [Test]
+        public void Surname_LongLength_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Surname, "12345123451234512345123451234512345123451");
+        }
+
+        [Test]
+        public void Surname_NormalLength_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Surname, "abcdefgh");
         }
 
         [Test]
@@ -150,6 +202,78 @@ namespace Nola.Test.ViewModelsTests
             var password = "abcdefgh";
             var model = new RegisterViewModel() { Password = password, ConfirmPassword = "123" };
             validator.ShouldHaveValidationErrorFor(x => x.ConfirmPassword, model);
+        }
+
+        [Test]
+        public void SchioolId_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.SchoolId, 0);
+        }
+
+        [Test]
+        public void SchioolId_Int_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.SchoolId, 1);
+        }
+
+        [Test]
+        public void TimeZoneId_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.TimeZoneId, null as string);
+        }
+
+        [Test]
+        public void TimeZoneId_String_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.TimeZoneId, "tz");
+        }
+    }
+
+    [TestFixture]
+    public class RegisterStudentViewModelValidatorTests
+    {
+        private RegisterStudentViewModelValidator validator;
+
+        [SetUp]
+        public void Setup()
+        {
+            validator = new RegisterStudentViewModelValidator();
+        }
+
+        [Test]
+        public void TeachingType_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor<RegisterStudentViewModel, TeachingType>(model => model.TeachingType, 0);
+        }
+
+        [Test]
+        public void TeachingType_Int_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.TeachingType, TeachingType.First);
+        }
+
+        [Test]
+        public void Grade_Empty_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, 0);
+        }
+
+        [Test]
+        public void Grade_LessOne_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, -1);
+        }
+
+        [Test]
+        public void Grade_GratherTwelve_HaveErrors()
+        {
+            validator.ShouldHaveValidationErrorFor(model => model.Grade, 13);
+        }
+
+        [Test]
+        public void Grade_Valid_NotHaveErrors()
+        {
+            validator.ShouldNotHaveValidationErrorFor(model => model.Grade, 1);
         }
     }
 }
