@@ -21,6 +21,10 @@ namespace Nola.App_Start
     {
         private static readonly Bootstrapper bootstrapper = new Bootstrapper();
 
+        public static IKernel Kernel {
+            get { return bootstrapper.Kernel; }
+        }
+
         /// <summary>
         /// Starts the application
         /// </summary>
@@ -86,6 +90,7 @@ namespace Nola.App_Start
     {
         public override void Load()
         {
+            //Kernel.Rebind<IMappingEngine>().ToMethod(context => Mapper.Engine);
             Kernel.Bind(o =>
             {
                 //o.FromThisAssembly() // Scans currently assembly
