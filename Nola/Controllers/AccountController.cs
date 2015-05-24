@@ -24,18 +24,20 @@ namespace Nola.Controllers
         private ApplicationUserManager userManager;
         private readonly IUserService userService;
         private readonly ISchoolService schoolService;
+        private readonly ISubjectService subjectService;
 
-        public AccountController(IUserService userService, ISchoolService schoolService)
-            : this(null, null, userService, schoolService)
+        public AccountController(IUserService userService, ISchoolService schoolService, ISubjectService subjectService)
+            : this(null, null, userService, schoolService, subjectService)
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ISchoolService schoolService)
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, IUserService userService, ISchoolService schoolService, ISubjectService subjectService)
         {
             UserManager = userManager;
             SignInManager = signInManager;
             this.userService = userService;
             this.schoolService = schoolService;
+            this.subjectService = subjectService;
         }
 
         public ApplicationSignInManager SignInManager
@@ -199,6 +201,7 @@ namespace Nola.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                user.EmailConfirmed = true; //TODO: remove auto e-mail confirmation
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -219,6 +222,51 @@ namespace Nola.Controllers
                 }
                 AddErrors(result);           
             }
+            model.PopulateSchoolsList(schoolService);
+            return View(model);
+        }
+
+        [AllowAnonymous]
+        public ActionResult RegisterTeacher()
+        {
+            var model = new RegisterTeacherViewModel();
+            model.PopulateSchoolsList(schoolService);
+            model.PopulateSubjectsList(subjectService);
+            return View(model);
+        }
+
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> RegisterTeacher(RegisterTeacherViewModel model)
+        {
+            //model.PopulateSchoolsList(schoolService);
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email };
+                user.EmailConfirmed = true; //TODO: remove auto e-mail confirmation
+                //var result = await UserManager.CreateAsync(user, model.Password);
+                if (true)
+                {
+                    //await UserManager.AddToRoleAsync(user.Id, "student");
+                    var profile = Mapper.Map<TeacherUser>(model);
+                    profile.Id = user.Id;
+                    //userService.AddProfile(profile);
+                    //userService.Commit();
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
+                    // Send an email with this link
+                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
+                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+
+                    return RedirectToAction("Index", "Home");
+                }
+                //AddErrors(result);
+            }
+            model.PopulateSchoolsList(schoolService);
+            model.PopulateSubjectsList(subjectService);
             return View(model);
         }
 
