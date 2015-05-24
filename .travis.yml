@@ -1,0 +1,10 @@
+language: csharp
+solution: Nola.sln
+
+install:
+  - sudo apt-get install nunit-console
+  - nuget restore Nola.sln
+
+script:
+  - xbuild Nola.sln
+  - nunit-console ./Nola.Test/bin/Debug/Nola.Test.dll
