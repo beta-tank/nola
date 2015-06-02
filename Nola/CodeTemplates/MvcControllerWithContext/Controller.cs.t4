@@ -43,6 +43,7 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using Nola.Controllers;
 <# foreach (var namespaceName in RequiredNamespaces) { #>
 using <#= namespaceName #>;
 <# } #>
@@ -71,7 +72,7 @@ namespace <#= Namespace #>
         bindAttribute = String.Empty;
     }
 #>
-    public class <#= ControllerName #> : Controller
+    public class <#= ControllerName #> : BaseController
     {
         private <#= ContextTypeName #> db = new <#= ContextTypeName #>();
 

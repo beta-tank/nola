@@ -1,6 +1,7 @@
 ﻿<#@ template language="C#" HostSpecific="True" #>
 <#@ output extension=".cshtml" #>
 <#@ include file="Imports.include.t4" #>
+<# var titleName = "Список"; #>
 @model IEnumerable<#= "<" + ViewDataTypeName + ">" #>
 <#
 // The following chained if-statement outputs the file header code and markup for a partial view, a view using a layout page, or a regular view.
@@ -12,7 +13,7 @@ if(IsPartialView) {
 #>
 
 @{
-    ViewBag.Title = "<#= ViewName#>";
+    ViewBag.Title = "<#= titleName#>";
 <#
 if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
@@ -22,7 +23,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 #>
 }
 
-<h2><#= ViewName#></h2>
+<h2><#= titleName#></h2>
 
 <#
 } else {
@@ -37,7 +38,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title><#= ViewName #></title>
+    <title><#= titleName #></title>
 </head>
 <body>
 <#
@@ -45,7 +46,7 @@ if (!String.IsNullOrEmpty(LayoutPageFile)) {
 }
 #>
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Добавить", "Create")
 </p>
 <table class="table">
     <tr>
@@ -95,17 +96,17 @@ string pkName = GetPrimaryKeyName();
 if (pkName != null) {
 #>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Details", "Details", new { id=item.<#= pkName #> }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.<#= pkName #> })
+            @Html.ActionLink("Редактировать", "Edit", new { id=item.<#= pkName #> }) |
+            @Html.ActionLink("Информация", "Details", new { id=item.<#= pkName #> }) |
+            @Html.ActionLink("Удалить", "Delete", new { id=item.<#= pkName #> })
         </td>
 <#
 } else {
 #>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Редактировать", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Информация", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Удалить", "Delete", new { /* id=item.PrimaryKey */ })
         </td>
 <#
 }
