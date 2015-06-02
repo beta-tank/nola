@@ -68,6 +68,15 @@
     <Compile Include="Models\Education\School.cs" />
     <Compile Include="Models\IEntity.cs" />
     <Compile Include="Models\Media\ImagesModels.cs" />
+    <Compile Include="Models\Question\BaseAnswer.cs" />
+    <Compile Include="Models\Question\BaseOption.cs" />
+    <Compile Include="Models\Question\BaseQuestion.cs" />
+    <Compile Include="Models\Question\IAnswer.cs" />
+    <Compile Include="Models\Question\IOption.cs" />
+    <Compile Include="Models\Question\IQuestion.cs" />
+    <Compile Include="Models\Question\OptionAnswer.cs" />
+    <Compile Include="Models\Question\SIngleAnswerQuestion.cs" />
+    <Compile Include="Models\Question\StandartOption.cs" />
     <Compile Include="Models\Users\ApplicationClaim.cs" />
     <Compile Include="Models\Users\ApplicationClaimsPrincipal.cs" />
     <Compile Include="Models\Users\ApplicationRole.cs" />
