@@ -5,6 +5,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Nola.Core.Data;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
+using Nola.Core.Models.Question;
 using Nola.Core.Models.Users;
 
 namespace Data
@@ -31,6 +32,8 @@ namespace Data
         public DbSet<School> Schools { get; set; }
         public DbSet<Subject> Subjects { get; set; }
         public DbSet<ImageBase> Images { get; set; }
+        public DbSet<BaseOption> Options { get; set; }
+        public DbSet<BaseQuestion> Questions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -45,6 +48,10 @@ namespace Data
             modelBuilder.Configurations.Add(new ImageBaseConfiguration());
             modelBuilder.Configurations.Add(new ImageLocalConfiguration());
             modelBuilder.Configurations.Add(new ImageRemoteConfiguration());
+            modelBuilder.Configurations.Add(new BaseOptionConfiguration());
+            modelBuilder.Configurations.Add(new StandartOptionConfiguration());
+            modelBuilder.Configurations.Add(new BaseQuestionConfiguration());
+            modelBuilder.Configurations.Add(new SingleAnswerQuestionConfiguration());
         }
     }
 

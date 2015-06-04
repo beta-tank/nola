@@ -2,6 +2,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
+using Nola.Core.Models.Question;
 using Nola.Core.Models.Users;
 
 namespace Nola.Core.Data
@@ -16,6 +17,9 @@ namespace Nola.Core.Data
         DbSet<School> Schools { get; set; }
         DbSet<Subject> Subjects { get; set; }
         DbSet<ImageBase> Images { get; set; }
+        DbSet<BaseOption> Options { get; set; }
+        DbSet<BaseQuestion> Questions { get; set; }
+
 
 
         // Methods required by RepositoryBase class
