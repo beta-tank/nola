@@ -269,11 +269,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\QuestionController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Mappings\DomainToViewModelsMappings.cs" />
     <Compile Include="Mappings\ViewModelsToDomainMappings.cs" />
+    <Compile Include="ViewModels\Question\ShortQuestionViewModel.cs" />
     <Compile Include="ViewModels\Users\AccountViewModels.cs" />
     <Compile Include="ViewModels\Users\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -457,6 +460,10 @@
     <Content Include="Views\Account\_RegisterBaseUserPartial.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\Enum.cshtml" />
     <Content Include="Views\Account\RegisterTeacher.cshtml" />
+    <Content Include="Views\Question\ManageQuestions.cshtml" />
+    <Content Include="Views\Question\_ShortQuestionPartial.cshtml" />
+    <Content Include="Views\Question\_SingleAnswerQuestionEdit.cshtml" />
+    <Content Include="Views\Question\_QuestionsList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

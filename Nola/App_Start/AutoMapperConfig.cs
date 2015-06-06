@@ -24,6 +24,7 @@ namespace Nola
                 m.ConstructServicesUsing((type) => NinjectWebCommon.Kernel.Get(type));
                 m.AddProfile<DomainToModelsMappings>();
                 m.AddProfile<ViewModelsToDomainMappings>();
+                m.AddProfile<DomainToViewModelsMappings>();
             });
         } 
     }

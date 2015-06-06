@@ -1,0 +1,9 @@
+﻿@model IEnumerable<Nola.ViewModels.Question.ShortQuestionViewModel>
+
+<div class="list-group">
+    @foreach (var question in Model)
+    {
+        @Html.Partial("_ShortQuestionPartial", question)
+    }
+</div>
+

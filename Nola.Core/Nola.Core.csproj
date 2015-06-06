@@ -79,6 +79,7 @@
     <Compile Include="Models\Question\IOption.cs" />
     <Compile Include="Models\Question\IQuestion.cs" />
     <Compile Include="Models\Question\OptionAnswer.cs" />
+    <Compile Include="Models\Question\QuestionType.cs" />
     <Compile Include="Models\Question\SIngleAnswerQuestion.cs" />
     <Compile Include="Models\Question\StandartOption.cs" />
     <Compile Include="Models\Users\ApplicationClaim.cs" />

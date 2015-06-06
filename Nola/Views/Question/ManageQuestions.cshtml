@@ -1,0 +1,74 @@
+﻿@using Nola.Controllers
+@model IEnumerable<Nola.ViewModels.Question.ShortQuestionViewModel>
+
+<div class="panel panel-default">
+    <div class="panel-heading">Редактирование теста</div>
+    <div class="panel-body">
+        <div class="row">
+            <button onclick="getQuestion(this)" data-getquestion-type="1" class="btn btn-success">Единичный выбор</button>
+        </div>
+        <div id="workField">
+            <div id="questionsList">
+                @Html.Partial("_QuestionsList", @Model)
+            </div>
+            <div id="questionEdit"></div>
+        </div>
+    </div>
+</div>
+
+@section scripts
+{
+    <script type="text/javascript">
+        function sendAjaxRequest(httpMethod, url, dataObject, callback) {
+            $.ajax(url, {
+                type: httpMethod,
+                data: dataObject,
+                contentType: "html",
+                success: callback
+            });
+        }
+
+        function hideChildren(id) {
+            $('#' + id).children().hide();
+        }
+
+        function addListeners() {
+            $(".question-short").click(function () {
+                getQuestion($(this));
+                return false;
+            });
+        }
+
+        function getQuestion(sender) {
+            var url = "@Url.Action("Edit")" + "?";
+            var id = $(sender).attr("data-question-id");
+            if (id === undefined) {
+                url += "type=" + $(sender).attr("data-getquestion-type");
+            } else {
+                url += "id=" + id;
+            }
+            sendAjaxRequest("get", url, null, function (data) {
+                var list = $("#questionsList");
+                var edit = $("#questionEdit");
+                if (list.is(":visible")) {
+                    list.fadeOut(200, function () {
+                        edit.html(data);
+                        edit.fadeIn(200);
+                    });
+                } else {
+                    edit.fadeOut(200, function () {
+                        edit.html(data);
+                        edit.fadeIn(200);
+                    });
+                    
+                }
+            });
+
+        }
+
+        $(document).ready(function() {
+            addListeners();
+        });
+
+    </script>
+}
