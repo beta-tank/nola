@@ -8,39 +8,83 @@
             <button onclick="getQuestion(this)" data-getquestion-type="1" class="btn btn-success">Единичный выбор</button>
         </div>
         <div id="workField">
-            <div id="questionsList">
+            @*<div id="questionsList">*@
                 @Html.Partial("_QuestionsList", @Model)
-            </div>
-            <div id="questionEdit"></div>
+            @*</div>
+            <div id="questionEdit"></div>*@
         </div>
     </div>
 </div>
 
+@section styles
+{
+    @Styles.Render("~/bundles/summernotecss")
+}
+
 @section scripts
 {
+    @Scripts.Render("~/bundles/summernotejs")
+    
     <script type="text/javascript">
-        function sendAjaxRequest(httpMethod, url, dataObject, callback) {
+    function sendAjaxRequest(httpMethod, url, dataObject, callback) {
+        $.ajax(url, {
+            type: httpMethod,
+            data: dataObject,
+            contentType: "html",
+            success: callback
+        });
+    }
+
+    function hideChildren(id) {
+        $('#' + id).children().hide();
+    }
+
+    function changeData(data, action) {
+        var field = $("#workField");
+        field.fadeOut(200, function () {
+            field.html(data);
+            action();
+            field.fadeIn(200);
+        });
+    }
+
+    function addListListeners() {
+        $(".question-short").click(function () {
+            getQuestion($(this));
+            return false;
+        });
+    }
+
+    function addEditListeners() {
+        $('.text-editor').summernote();
+        $("#show-list").click(getList);
+        $("#question-form").submit(function (e) {
+            var postData = $(this).serialize();
+            var url = $(this).attr("action");
             $.ajax(url, {
-                type: httpMethod,
-                data: dataObject,
-                contentType: "html",
-                success: callback
+                type: "POST",
+                data: postData,
+                //complete: function (xhr, statusText) {
+                //    alert(xhr.status);
+                //}
+                statusCode: {
+                    200: function (response) {
+                        changeData(response, addListListeners);
+                    },
+                    400: function (response) {
+                        changeData(response, addEditListeners);
+                    }
+                }
             });
-        }
+            e.preventDefault(); //STOP default action
+            return false;
+            //e.unbind(); //unbind. to stop multiple form submit.
+        });
+        
+    }
 
-        function hideChildren(id) {
-            $('#' + id).children().hide();
-        }
-
-        function addListeners() {
-            $(".question-short").click(function () {
-                getQuestion($(this));
-                return false;
-            });
-        }
-
-        function getQuestion(sender) {
-            var url = "@Url.Action("Edit")" + "?";
+    function getQuestion(sender) {
+        var url = "@Url.Action("Edit")" + "?";
             var id = $(sender).attr("data-question-id");
             if (id === undefined) {
                 url += "type=" + $(sender).attr("data-getquestion-type");
@@ -48,26 +92,21 @@
                 url += "id=" + id;
             }
             sendAjaxRequest("get", url, null, function (data) {
-                var list = $("#questionsList");
-                var edit = $("#questionEdit");
-                if (list.is(":visible")) {
-                    list.fadeOut(200, function () {
-                        edit.html(data);
-                        edit.fadeIn(200);
-                    });
-                } else {
-                    edit.fadeOut(200, function () {
-                        edit.html(data);
-                        edit.fadeIn(200);
-                    });
-                    
-                }
+                changeData(data, addEditListeners);
             });
 
         }
 
+        function getList() {
+            var url = "@Url.Action("QuestionsList")" + "?";
+            sendAjaxRequest("get", url, null, function (data) {
+                changeData(data, addListListeners);
+            });
+        }
+
         $(document).ready(function() {
-            addListeners();
+            addListListeners();
+            $('.text-editor').summernote();
         });
 
     </script>

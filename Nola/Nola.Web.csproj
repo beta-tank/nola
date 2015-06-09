@@ -300,6 +300,7 @@
     <Content Include="Content\SIte.min.css">
       <DependentUpon>Site.css</DependentUpon>
     </Content>
+    <Content Include="Content\summernote.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -421,6 +422,8 @@
     <Content Include="Scripts\respond.matchmedia.addListener.js" />
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\summernote.js" />
+    <Content Include="Scripts\summernote.min.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

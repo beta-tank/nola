@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
@@ -30,6 +31,13 @@ namespace Nola.Controllers
             return View(list);
         }
 
+        public ActionResult QuestionsList()
+        {
+            var list = Mapper.Map<IEnumerable<ShortQuestionViewModel>>(questionService.GetAll());
+            return PartialView("_QuestionsList", list);
+        }
+
+        [HttpGet]
         public ActionResult Edit(int? id, QuestionType? type)
         {
             if (id == null)
@@ -39,18 +47,43 @@ namespace Nola.Controllers
                     case QuestionType.SingleAnswer:
                         return PartialView("_SingleAnswerQuestionEdit", new SingleAnswerQuestion());
                     case null:
-                        return PartialView("Error", "Некорректные параметры запроса");
+                        return ErrorPage("Некорректные параметры запроса");
                 }
             }
             else
             {
                 var question = questionService.GetQuestion(id.Value);
-                if(question == null)
-                    return PartialView("Error", "Вопроса не существует");
-                if(question is SingleAnswerQuestion)
-                    return PartialView("_SingleAnswerQuestionEdit", question as SingleAnswerQuestion);               
+                return FindQuestionView(question);               
             }
-            return PartialView("Error", "Некорректные параметры");
+            return ErrorPage("Некорректные параметры");
+        }
+
+        [HttpPost]
+        public ActionResult EditSingleAnswer(SingleAnswerQuestion question)
+        {
+            if (ModelState.IsValid)
+            {
+                return QuestionsList();
+            }
+            Response.StatusCode = (int) HttpStatusCode.BadRequest;
+            return PartialView("_SingleAnswerQuestionEdit", question);
+        }
+
+        private ActionResult FindQuestionView(BaseQuestion question)
+        {
+            if (question == null)
+            {
+                return ErrorPage("Вопроса не существует");
+            }
+            if (question is SingleAnswerQuestion)
+                return PartialView("_SingleAnswerQuestionEdit", (SingleAnswerQuestion) question);
+            return ErrorPage("Некорректные параметры");
+        }
+
+        private ActionResult ErrorPage(string message)
+        {
+            Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            return PartialView("Error", message);
         }
     }
 }
