@@ -23,6 +23,7 @@
 
 @section scripts
 {
+@Scripts.Render("~/bundles/jqueryval")
     @Scripts.Render("~/bundles/summernotejs")
     
     <script type="text/javascript">
@@ -66,6 +67,28 @@
                 data: postData,
                 //complete: function (xhr, statusText) {
                 //    alert(xhr.status);
+                //},
+                statusCode: {
+                    200: function (response) {
+                        changeData(response, addListListeners);
+                    },
+                    400: function (response) {
+                        changeData(response, addEditListeners);
+                    }
+                }
+            });
+            e.preventDefault(); //STOP default action
+            return false;
+            //e.unbind(); //unbind. to stop multiple form submit.
+        });
+        $("#delete-question-form").submit(function (e) {
+            var postData = $(this).serialize();
+            var url = $(this).attr("action");
+            $.ajax(url, {
+                type: "POST",
+                data: postData,
+                //complete: function (xhr, statusText) {
+                //    alert(xhr.status);
                 //}
                 statusCode: {
                     200: function (response) {
@@ -80,6 +103,7 @@
             return false;
             //e.unbind(); //unbind. to stop multiple form submit.
         });
+        
         
     }
 

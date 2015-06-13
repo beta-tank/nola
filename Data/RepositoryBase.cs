@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
-using Nola.Core.Data;
 using Nola.Core.Models;
+using Nola.Data;
 using PagedList;
 
 namespace Data

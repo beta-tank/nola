@@ -2,11 +2,11 @@ using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using Data.Configuration;
 using Microsoft.AspNet.Identity.EntityFramework;
-using Nola.Core.Data;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
 using Nola.Core.Models.Question;
 using Nola.Core.Models.Users;
+using Nola.Data;
 
 namespace Data
 {
@@ -49,7 +49,6 @@ namespace Data
             modelBuilder.Configurations.Add(new ImageLocalConfiguration());
             modelBuilder.Configurations.Add(new ImageRemoteConfiguration());
             modelBuilder.Configurations.Add(new BaseOptionConfiguration());
-            modelBuilder.Configurations.Add(new StandartOptionConfiguration());
             modelBuilder.Configurations.Add(new BaseQuestionConfiguration());
             modelBuilder.Configurations.Add(new SingleAnswerQuestionConfiguration());
         }

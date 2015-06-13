@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Data.Repository;
-using Nola.Core.Data;
 using Nola.Core.Models.Education;
+using Nola.Data;
 
 namespace Nola.Service.Services
 {

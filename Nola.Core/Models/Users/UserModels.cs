@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using Nola.Core.Models.Education;
 using Nola.Core.Models.Media;
+using Nola.Core.Models.Olimpiads;
+using Nola.Core.Models.Question;
+using Nola.Core.Models.Results;
 
 namespace Nola.Core.Models.Users
 {
@@ -13,7 +16,6 @@ namespace Nola.Core.Models.Users
         public virtual ApplicationUser ApplicationUser { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        //public virtual ImageBase AvatarImage { get; set; }
         public virtual School School { get; set; }
 
         public string TimeZoneInfoId { get; set; }
@@ -22,6 +24,11 @@ namespace Nola.Core.Models.Users
             get { return timeZoneInfo ?? (timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(TimeZoneInfoId)); }
             private set { timeZoneInfo = value; } 
         }
+
+        public IEnumerable<OlympiadPartiсipation> OlympiadPartiсipations { get; set; }
+        public IEnumerable<BaseAnswer> Answers { get; set; }
+        public IEnumerable<CourseResult> CourseResults { get; set; }
+        public IEnumerable<OlympiadResult> OlympiadResults { get; set; }
     }
 
     public class StudentUser : BaseUser

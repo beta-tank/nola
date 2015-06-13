@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Nola.Core.Models.Courses;
 using Nola.Core.Models.Users;
 
 namespace Nola.Core.Models.Education
@@ -8,5 +9,6 @@ namespace Nola.Core.Models.Education
         public int Id { get; set; }
         public string Name { get; set; }
         public virtual  ICollection<TeacherUser> Teachers { get; set; }
+        public IEnumerable<Course> Courses { get; set; }
     }
 }

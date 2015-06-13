@@ -1,6 +1,6 @@
 ﻿@model Nola.ViewModels.Question.ShortQuestionViewModel
 <a href="#" class="list-group-item question-short" data-question-id="@Model.Id">
-    @Model.Text
+    @Html.Raw(Model.Text)
 </a>
     @*<button class="well well-sm" onclick="getQuestion(@Model.Id)" data-question-id="@Model.Id">
         @Model.Text

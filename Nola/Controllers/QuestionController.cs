@@ -59,14 +59,33 @@ namespace Nola.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult EditSingleAnswer(SingleAnswerQuestion question)
         {
             if (ModelState.IsValid)
             {
+                if(question.Id == 0)
+                    questionService.AddQuestion(question);
+                else
+                    questionService.UpdateQuestion(question);
+                questionService.Commit();
                 return QuestionsList();
             }
             Response.StatusCode = (int) HttpStatusCode.BadRequest;
             return PartialView("_SingleAnswerQuestionEdit", question);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(BaseQuestion question)
+        {
+            if (ModelState.IsValid)
+            {
+                questionService.DeleteQuestion(question);
+                questionService.Commit();
+                return QuestionsList();
+            }
+            return ErrorPage("Некорректные параметры");
         }
 
         private ActionResult FindQuestionView(BaseQuestion question)

@@ -9,7 +9,7 @@ namespace Nola.Core.Models.Question
         float Weight { get; set; }
         ICollection<BaseOption> Options { get; set; }
 
-        float Check(); //TODO:  добавить приём ответов
+        float Check(BaseAnswer baseAnswer); //TODO:  добавить приём ответов
 
     }
 }

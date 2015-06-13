@@ -1,6 +1,6 @@
-﻿using Nola.Core.Data;
-using Nola.Core.Models.Education;
+﻿using Nola.Core.Models.Education;
 using Nola.Core.Models.Users;
+using Nola.Data;
 
 namespace Data.Repository
 {

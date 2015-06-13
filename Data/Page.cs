@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 
-namespace Nola.Core.Data
+namespace Nola.Data
 {
     public class Page
     {

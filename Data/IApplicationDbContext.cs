@@ -5,7 +5,7 @@ using Nola.Core.Models.Media;
 using Nola.Core.Models.Question;
 using Nola.Core.Models.Users;
 
-namespace Nola.Core.Data
+namespace Nola.Data
 {
     public interface IApplicationDbContext
     {

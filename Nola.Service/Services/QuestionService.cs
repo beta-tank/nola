@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Data.Repository;
-using Nola.Core.Data;
 using Nola.Core.Models.Question;
+using Nola.Data;
 
 namespace Nola.Service.Services
 {

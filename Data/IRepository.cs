@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using PagedList;
 
-namespace Nola.Core.Data
+namespace Nola.Data
 {
     public interface IRepository<T> where T : class
     {

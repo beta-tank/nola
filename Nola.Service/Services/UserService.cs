@@ -1,6 +1,6 @@
 ﻿using Data.Repository;
-using Nola.Core.Data;
 using Nola.Core.Models.Users;
+using Nola.Data;
 
 namespace Nola.Service.Services
 {

@@ -1,4 +1,4 @@
-﻿namespace Nola.Core.Data
+﻿namespace Nola.Data
 {
     public interface IUnitOfWork
     {

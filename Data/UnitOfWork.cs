@@ -1,4 +1,4 @@
-﻿using Nola.Core.Data;
+﻿using Nola.Data;
 
 namespace Data
 {
