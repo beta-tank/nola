@@ -5,6 +5,8 @@ using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Nola.Core.Models.Results;
+using Nola.Core.Models.Users;
 
 namespace Nola.Controllers
 {
@@ -12,6 +14,12 @@ namespace Nola.Controllers
     {
         public ActionResult Index()
         {
+            var CourseResults = new List<CourseResult>();
+            var Students = new List<StudentUser>();
+            var sortedStudents =
+                Students.OrderByDescending(s => CourseResults
+                    .Where(r => r.User == s)
+                    .Sum(r => r.RightPercent));
             return View();
         }
 

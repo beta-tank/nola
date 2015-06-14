@@ -110,7 +110,7 @@
     <Compile Include="Models\Question\MultiOptionAnswer.cs" />
     <Compile Include="Models\Question\OptionAnswer.cs" />
     <Compile Include="Models\Question\QuestionType.cs" />
-    <Compile Include="Models\Question\SIngleAnswerQuestion.cs" />
+    <Compile Include="Models\Question\SingleAnswerQuestion.cs" />
     <Compile Include="Models\Question\SingleOptionAnswer.cs" />
     <Compile Include="Models\Question\TextAnswer.cs" />
     <Compile Include="Models\Question\TextAnswerQuestion.cs" />

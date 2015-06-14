@@ -15,7 +15,7 @@ namespace Nola.Core.Models.Courses
         public IEnumerable<int> Grades { get; set; }
         public IEnumerable<TeachingType> TeachingTypes { get; set; }
         public IEnumerable<BaseAnswer> Answers { get; set; }
-        public int AnsersCount {
+        public int AnswersCount {
             get { return Answers.Count(); }
         }      
         public IEnumerable<CourseResult> Results { get; set; }
